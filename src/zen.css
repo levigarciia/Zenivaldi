@@ -1,0 +1,573 @@
+#browser:not(.is-settingspage) {
+    --colorBg: #0b0a14 !important;
+    --colorBgDark: #080710 !important;
+    --colorBgDarker: #080710 !important;
+    --colorBgLight: #171622 !important;
+    --colorBgLighter: #201e2c !important;
+    --colorBgIntense: #252332 !important;
+    --colorBgAlphaBlur: #201e2c !important;
+    --colorFg: #c9c6d3 !important;
+    --colorFgFaded: #a4a0b2 !important;
+    --colorAccentBg: #0b0a14 !important;
+    --colorAccentFg: #c9c6d3 !important;
+    --colorHighlightBg: #d20045 !important;
+    --colorHighlightFg: #ffffff !important;
+    --colorTabBar: #0b0a14 !important;
+    background: #0b0a14 !important;
+}
+
+#browser.tabs-left .tabbar-wrapper {
+    background: linear-gradient(145deg, #0e0c19, #080711 75%) !important;
+    border: 1px solid #302d3d !important;
+    border-radius: 10px;
+    margin: 6px 4px 6px 6px;
+    padding: 6px;
+}
+
+#browser.tabs-left #tabs-tabbar-container {
+    padding-top: 0 !important;
+}
+
+#browser.tabs-left #tabs-container,
+#browser.tabs-left #tabs-container > .resize {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+
+#browser.tabs-left #tabs-container > .resize {
+    max-height: none !important;
+    min-height: 0;
+    flex: 1 1 auto !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before {
+    display: grid !important;
+    grid-template-columns: 1fr repeat(3, 30px);
+    grid-template-rows: 30px 36px;
+    align-content: start;
+    padding: 0 0 8px !important;
+    gap: 2px !important;
+    min-height: 80px !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before .UrlBar-AddressField {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    flex: 1 0 100% !important;
+    order: 10;
+    margin: 6px 0 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 4px;
+    height: 36px;
+    border: 0 !important;
+    border-radius: 6px !important;
+    background: #242231 !important;
+    color: #c9c6d3 !important;
+    box-shadow: none !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before .UrlBar-AddressField:focus-within {
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before .UrlBar-UrlFieldWrapper {
+    min-width: 0;
+}
+
+#browser.tabs-left .UrlBar-AddressField:not(:focus-within) .UrlFragment--Lowlight {
+    display: none;
+}
+
+#browser.tabs-left .UrlBar-AddressField:not(:focus-within) .UrlFragment-Wrapper {
+    font-weight: 400;
+    color: #c9c6d3;
+}
+
+#browser.tabs-left .UrlBar-AddressField:not(:hover):not(:focus-within) .SiteInfoButton {
+    display: none;
+}
+
+#browser.tabs-left .toolbar-tabbar-before .toolbar-spacer-flexible {
+    flex: 1 1 30px !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > div:has(.UrlBar-AddressField) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100% !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    overflow: visible !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before button {
+    color: #b9b4c6 !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > .toolbar-extensions,
+#browser.tabs-left .toolbar-tabbar-before > .toolbar-command {
+    grid-column: 4;
+    grid-row: 2;
+    justify-self: end;
+    align-self: center;
+    width: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    margin: 6px 3px 0 0;
+    z-index: 11;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms ease;
+}
+
+#browser.tabs-left .toolbar-tabbar-before:has(.UrlBar-AddressField:hover)
+    > :is(.toolbar-extensions, .toolbar-command),
+#browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command):hover,
+#browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command):focus-within {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#browser.tabs-left .toolbar-tabbar-before:has(
+    > :is(.UrlBar-AddressField, .toolbar-extensions, .toolbar-command):hover,
+    > :is(.toolbar-extensions, .toolbar-command):focus-within
+) .UrlBar-AddressField {
+    padding-right: 34px;
+}
+
+#browser.tabs-left .toolbar-tabbar-before:has(> .toolbar-extensions:not(:empty))
+    > .toolbar-command {
+    display: none;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > .toolbar-command svg {
+    display: none;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > .toolbar-command button::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: currentColor;
+    mask: url('chrome-extension://mpognobbkildjkofajifpdfhcoklimli/resources/theme/vivaldi/Extensions.svg')
+        center / contain no-repeat;
+}
+
+#browser.tabs-left .tab-strip {
+    margin: 0 !important;
+    max-width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 4px;
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: #3c374d transparent;
+}
+
+#browser.tabs-left .tab-strip > .separator {
+    position: relative;
+    transform: none;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 1px;
+    margin: 16px 0 8px;
+    background: #242130;
+}
+
+#browser.tabs-left .tab-strip > .separator hr {
+    display: none;
+}
+
+#browser.tabs-left .tab-strip > div:has(> .tab-position) {
+    display: contents;
+}
+
+#browser.tabs-left .tab-strip .tab-position {
+    position: relative !important;
+    transform: none !important;
+    flex: 0 0 100%;
+    height: 36px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    scale: 1 !important;
+    min-width: 0;
+    max-width: 100%;
+}
+
+#browser.tabs-left .tab-position .tab-wrapper,
+#browser.tabs-left .tab-position .tab {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    max-height: none !important;
+}
+
+#browser.tabs-left .tab-strip .tab-position.is-pinned {
+    flex: 1 1 26%;
+    height: 46px !important;
+    min-width: 50px;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+#browser.tabs-left .tab.pinned .title,
+#browser.tabs-left .tab .close {
+    display: none !important;
+}
+
+#browser.tabs-left .tab.active .tab-header .favicon {
+    filter: none !important;
+}
+
+#browser.tabs-left .tab:not(.pinned) .favicon:not(.progress) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    line-height: 0;
+}
+
+#browser.tabs-left .toolbar-tabbar-before {
+    position: relative;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > button.vivaldi {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #b9b4c6;
+    border-radius: 5px;
+    z-index: 20;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > button.vivaldi > span {
+    display: none !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > button.vivaldi::after {
+    content: '';
+    position: static !important;
+    inset: auto !important;
+    z-index: auto;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 4px;
+    background: radial-gradient(circle, currentColor 1.5px, transparent 2px) 0 0 / 6px 4px repeat-x;
+}
+
+#browser.tabs-left .tab-wrapper[aria-label*="Discord" i] .button-badge {
+    display: none !important;
+}
+
+#browser.tabs-left .tab.pinned .tab-header {
+    justify-content: center;
+    padding: 0;
+    flex: 1;
+}
+
+#browser.tabs-left .tab-strip > .tab-position.tab-yield-space {
+    display: none;
+}
+
+#browser.tabs-left .tab {
+    background: transparent !important;
+    color: #c9c6d3 !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+#browser.tabs-left .tab.active {
+    background: #262230 !important;
+}
+
+#browser.tabs-left .tab:hover {
+    background: #201d2c !important;
+}
+
+#browser.tabs-left .tab .tab-header {
+    padding-left: 10px;
+    gap: 4px;
+}
+
+#browser.tabs-left .tab .title {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#browser.tabs-left .tab.pinned {
+    background: #242130 !important;
+    border: 2px solid transparent;
+}
+
+#browser.tabs-left .tab.pinned.active {
+    border-color: #d20045 !important;
+    background: #322236 !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-after {
+    display: grid !important;
+    grid-template-columns: 30px 1fr 30px;
+    grid-template-rows: 30px;
+    min-height: 34px;
+    max-height: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    margin-top: auto;
+    padding: 4px 0 0 !important;
+}
+
+#browser.tabs-left #webview-container {
+    border-radius: 9px;
+    margin: 6px 6px 6px 0;
+    overflow: hidden;
+}
+
+#browser #modal-bg:has(.quick-command-container) {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(740px, calc(100vw - 64px));
+    max-width: calc(100vw - 64px);
+    max-height: 70vh;
+    border: 1px solid #444444;
+    border-radius: 6px;
+}
+
+#browser #modal-bg:has(.quick-command-container) .modal-wrapper {
+    background: #191919;
+    color: #c9c9c9;
+    box-shadow: 0 12px 40px #0005;
+}
+
+#browser .quick-command-container {
+    width: 100%;
+}
+
+#browser .quick-command-container header {
+    background: #191919;
+}
+
+#browser .quick-command-container .quick-command-search,
+#browser .quick-command-container .quick-command-search-hint {
+    height: 58px;
+    padding: 18px 20px 18px 44px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #d0d0d0;
+    border-bottom: 1px solid #303030;
+}
+
+#browser .quick-command-container .quick-commands {
+    background: #191919;
+    max-height: 50vh !important;
+}
+
+#browser .quick-command-container .quick-command {
+    padding-left: 22px;
+    font-size: 13px;
+}
+
+#browser .quick-command-container .quick-command[data-selected] {
+    background: #303030 !important;
+    color: #eeeeee !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #browser.tabs-left .tab,
+    #browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command) {
+        transition: none !important;
+    }
+}
+
+#browser #modal-bg:has(.quick-command-container) {
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    max-height: calc(100vh - 32px);
+}
+
+#browser #modal-bg:has(.quick-command-container) .quick-commands {
+    max-height: min(50vh, calc(100vh - 110px)) !important;
+    overflow-y: auto;
+}
+
+#browser #modal-bg:has(.quick-command-container) {
+    width: min(750px, calc(100vw - 48px));
+    border-color: #494945;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+#browser .quick-command-container,
+#browser #modal-bg:has(.quick-command-container) .modal-wrapper,
+#browser .quick-command-container header {
+    background: #181917;
+}
+
+#browser .quick-command-container .quick-command-search,
+#browser .quick-command-container .quick-command-search-hint {
+    height: 62px;
+    padding-left: 44px;
+    background: transparent;
+    border-bottom-color: #30312e;
+    font-size: 14px;
+}
+
+#browser .quick-command-container.pesquisa-zen-ativa .quick-commands {
+    display: none;
+}
+
+.pesquisa-zen-lista {
+    max-height: min(400px, calc(100vh - 150px));
+    overflow-y: auto;
+    padding: 6px 10px;
+    scrollbar-width: thin;
+}
+
+.pesquisa-zen-linha {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 49px;
+    padding: 0 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #babbb8;
+    cursor: pointer;
+}
+
+.pesquisa-zen-linha[aria-selected="true"],
+.pesquisa-zen-linha:hover {
+    background: #2b2d29;
+}
+
+.pesquisa-zen-linha img {
+    flex: 0 0 16px;
+}
+
+.pesquisa-zen-linha strong {
+    flex: 0 1 auto;
+    max-width: 45%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.pesquisa-zen-google strong {
+    max-width: 100%;
+}
+
+.pesquisa-zen-google {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #181917;
+    box-shadow: 0 1px #30312e;
+}
+
+.pesquisa-zen-google span:empty {
+    display: none;
+}
+
+.pesquisa-zen-linha span {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#browser .quick-command-container .quick-command-timestamp,
+#browser .quick-command-container .item-count {
+    display: none;
+}
+
+#browser .quick-command-container header {
+    position: relative;
+}
+
+#browser .quick-command-container header::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 24px;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid #8e928b;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#browser .quick-command-container header::after {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 35px;
+    width: 6px;
+    height: 1.5px;
+    background: #8e928b;
+    transform: rotate(45deg);
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+#browser .quick-command-container .quick-commands,
+#browser .quick-command-container .pesquisa-zen-lista {
+    background: #181917;
+    scrollbar-width: none !important;
+}
+
+#browser .quick-command-container *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+#browser .quick-command-container .quick-commands .quick-command {
+    margin: 0 10px;
+    padding: 0 12px;
+    border-radius: 4px;
+    color: #babbb8;
+    font-size: 13px;
+}
+
+#browser .quick-command-container .quick-command[data-selected],
+#browser .quick-command-container .quick-command:hover {
+    background: #2b2d29 !important;
+    color: #babbb8 !important;
+}
+
+#browser .quick-command-container .quick-command-title {
+    flex: 0 1 auto;
+    max-width: 45%;
+    font-weight: 600;
+    margin-right: 14px;
+}
+
+#browser .quick-command-container .quick-command-url {
+    flex: 1;
+    min-width: 0;
+    opacity: 1;
+    color: #babbb8;
+}
