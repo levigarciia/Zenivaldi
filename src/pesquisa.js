@@ -1,3 +1,21 @@
+function obterEnderecoDireto(consulta) {
+    const texto = consulta.trim();
+    if (!texto || /\s/.test(texto)) return null;
+    const comProtocolo = /^https?:\/\//i.test(texto);
+    try {
+        const endereco = new URL(comProtocolo ? texto : `https://${texto}`);
+        if (!['http:', 'https:'].includes(endereco.protocol)) return null;
+        const dominio = endereco.hostname;
+        const pareceDominio = dominio === 'localhost'
+            || /^(?:\d{1,3}\.){3}\d{1,3}$/.test(dominio)
+            || /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9-]{2,}$/i.test(dominio);
+        if (!comProtocolo && !pareceDominio) return null;
+        return endereco.href;
+    } catch {
+        return null;
+    }
+}
+
 function ordenarSugestoesZen(historico, consulta) {
     const termo = consulta.trim().toLocaleLowerCase();
     const unicos = new Map();
@@ -49,6 +67,14 @@ function ordenarSugestoesZen(historico, consulta) {
             titulo:`Pesquisar por “${consulta}” com Google`,
             pesquisa:true
         };
+    }
+
+    function sugestoesImediatas(consulta) {
+        if (!consulta) return [];
+        const sugestoes = [sugestaoGoogle(consulta)];
+        const endereco = obterEnderecoDireto(consulta);
+        if (endereco) sugestoes.push({url:endereco, titulo:'Abrir endereço', direto:true});
+        return sugestoes;
     }
 
     function limpar() {
@@ -142,7 +168,7 @@ function ordenarSugestoesZen(historico, consulta) {
     async function pesquisar(campo) {
         const atual = ++geracao;
         const consulta = obterConsulta(campo);
-        const pesquisa = consulta ? [sugestaoGoogle(consulta)] : [];
+        const pesquisa = sugestoesImediatas(consulta);
         apresentar(campo, pesquisa);
         let sugestoes;
         try {
@@ -157,7 +183,8 @@ function ordenarSugestoesZen(historico, consulta) {
             }
         } catch { return; }
         if (atual !== geracao || !campo.isConnected || obterConsulta(campo) !== consulta) return;
-        apresentar(campo, [...pesquisa, ...sugestoes]);
+        const enderecoDireto = pesquisa.find(item => item.direto)?.url;
+        apresentar(campo, [...pesquisa, ...sugestoes.filter(item => item.url !== enderecoDireto)]);
     }
 
     function entrada(evento) {
@@ -165,7 +192,7 @@ function ordenarSugestoesZen(historico, consulta) {
         clearTimeout(temporizador);
         ++geracao;
         const consulta = obterConsulta(evento.target);
-        apresentar(evento.target, consulta ? [sugestaoGoogle(consulta)] : []);
+        apresentar(evento.target, sugestoesImediatas(consulta));
         temporizador = setTimeout(()=>pesquisar(evento.target), 100);
     }
 

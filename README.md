@@ -1,8 +1,39 @@
-# Zenivaldi
+<div align="center">
 
-Deixe o Vivaldi com um visual inspirado no Zen Browser: abas na lateral, tema escuro e uma pesquisa flutuante mais limpa.
+<h1>Zenivaldi</h1>
 
-Você não precisa saber programar. No Windows, basta baixar, extrair a pasta e abrir o instalador.
+<p>Seu Vivaldi com mais espaço e um visual inspirado no Zen Browser.</p>
+
+<p>Abas na lateral. Pesquisa flutuante. Links que abrem direto.</p>
+
+<p>
+<a href="https://github.com/levigarciia/Zenivaldi/releases/latest"><strong>Baixar para Windows</strong></a>
+ · <a href="#como-instalar">Como instalar</a>
+ · <a href="#como-remover">Como remover</a>
+ · <a href="https://github.com/levigarciia/Zenivaldi/issues">Relatar um problema</a>
+</p>
+
+</div>
+
+![Interface do Zenivaldi com abas laterais e tema escuro](docs/images/visao-geral.png)
+
+<p align="center"><em>Captura real do Vivaldi em perfil de demonstração, com página e dados fictícios.</em></p>
+
+| Mais espaço | Pesquisa mais clara | Instalação simples |
+| :--- | :--- | :--- |
+| Abas organizadas na lateral e recolhimento automático opcional. | Endereços simples primeiro e Google sempre disponível. | Baixe, extraia e execute. Sem ferramentas de programação. |
+
+## Cole um link e abra direto
+
+Ao colar um endereço, **Abrir endereço** já fica selecionado. Pressione **Enter** para abrir o site. A opção de pesquisar no Google continua no topo, caso você prefira.
+
+![Pesquisa flutuante com o link selecionado para abrir e o Google como alternativa](docs/images/abrir-link.png)
+
+Funciona também com domínios sem `https://`, como `exemplo.com/leituras`, mesmo que você nunca tenha visitado o endereço. O modal fecha ao abrir o resultado e mantém o visual ao ser aberto novamente.
+
+## Instale sem programar
+
+O pacote tem dois arquivos para usar com dois cliques: **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar. Você não precisa mexer nos arquivos de código.
 
 ## O que muda
 
@@ -57,6 +88,7 @@ Os nomes e a localização dessas opções podem variar conforme a versão e o i
 * Sem texto: mostra as abas da janela atual. Escolher uma delas ativa a aba existente.
 * Com texto: busca no histórico local e prioriza endereços mais simples.
 * **Pesquisar com Google**: fica fixo no topo, mesmo quando há sugestões de sites.
+* Ao colar um link ou digitar um domínio, **Abrir endereço** aparece e começa selecionado. Enter abre o link diretamente, mesmo que ele nunca tenha sido visitado. A pesquisa no Google continua disponível.
 * **Setas**: mudam a opção selecionada. **Enter**: abre a seleção. Você também pode clicar.
 * Havendo sugestões de sites, a primeira delas começa selecionada. Para pesquisar no Google, clique na primeira linha ou use a seta para cima até selecioná la.
 
