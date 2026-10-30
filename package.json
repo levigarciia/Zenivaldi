@@ -1,7 +1,7 @@
-{
+﻿{
     "name": "zenivaldi",
     "private": true,
-    "version": "0.2.2",
+    "version": "0.2.3",
     "license": "GPL-3.0-only",
     "description": "Visual inspirado no Zen para o Vivaldi no Windows",
     "scripts": {
