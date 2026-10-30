@@ -23,10 +23,8 @@ Mantenha as alterações locais até a revisão. Não crie commits, envie altera
 | :--- | :--- |
 | `src/manifesto.json` | Ordem dos scripts, folhas de estilo e recursos de página instalados. |
 | `src/zeni-paginas.js` | Integração e comunicação entre páginas e interface do navegador. |
-| `src/zeni-pagina-inicio.js` | Captura de links e controle de mídia no contexto isolado da página. |
-| `src/zeni-midia-inicio.js` | Detecção de ações do Media Session no contexto da página. |
+| `src/zeni-pagina-inicio.js` | Captura de links no contexto isolado da página. |
 | `src/zeni-peek.js` | Prévia interativa e ciclo de vida da aba temporária. |
-| `src/zeni-player.js` | Controles de reprodução e seleção de fontes. |
 | `scripts/Configurar.ps1` | Instalação, backups e remoção. |
 | `scripts/Layout.ps1` | Configuração e restauração de layout e atalhos. |
 | `scripts/Atualizar.ps1` | Verificação de atualizações e reparo. |
@@ -66,10 +64,8 @@ Os testes automáticos não comprovam renderização, reprodução ou comportame
 5. Feche a última aba da lista e confira sua saída. Feche uma aba intermediária e confira o deslocamento das demais.
 6. Confira a preferência de reduzir movimentos.
 7. Abra uma página grande com Alt+clique no ZeniPeek. Teste fechamento, abertura em aba normal e divisão nativa da tela.
-8. Confira o player recolhido e a expansão ao passar o mouse ou usar o teclado. Teste os controles e a seleção de fontes.
-   Entre em PiP e confira que o player desaparece da lateral e retorna quando a janela flutuante fecha.
-9. Feche a prévia e confira a remoção da aba temporária. Feche a aba de mídia e confira a remoção dos controles.
-10. Confira instalação, reaplicação e remoção sem perder configurações não relacionadas.
+8. Feche a prévia e confira a remoção da aba temporária.
+9. Confira instalação, reaplicação e remoção sem perder configurações não relacionadas.
 
 Registre a versão exata do navegador e as limitações em [VALIDACAO.md](VALIDACAO.md).
 
@@ -82,6 +78,6 @@ Capture a interface real. A presença de um elemento visual não basta para afir
 
 ## Referência e licença
 
-ZeniPeek e ZeniPlayer se baseiam no desenho das funções e nos contratos de integração do
+O ZeniPeek se baseia no desenho das funções e nos contratos de integração do
 [Awesome Vivaldi](https://github.com/PaRr0tBoY/Awesome-Vivaldi). Consulte os [avisos de terceiros](../THIRD_PARTY_NOTICES.md)
 e a [licença GPL versão 3](../LICENSE). Preserve esses avisos ao distribuir versões modificadas.

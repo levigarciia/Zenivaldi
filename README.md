@@ -12,7 +12,7 @@
 
 </div>
 
-**Development preview:** the current source includes automatic layout setup, ZeniPeek and ZeniPlayer. These changes
+**Development preview:** the current source includes automatic layout setup and ZeniPeek. These changes
 are not in the latest packaged release yet. The [latest published download](https://github.com/levigarciia/Zenivaldi/releases/latest)
 is the stable version and does not include all the features shown here.
 
@@ -61,23 +61,6 @@ The temporary preview tab is removed when you close it. Your original tab remain
 
 One preview is shown per window. The current implementation handles ordinary HTTP and HTTPS links; internal browser
 pages are not injected. Opening a preview as a regular tab loads its current URL as a normal page.
-
-## ZeniPlayer
-
-When a compatible site plays audio or video, ZeniPlayer appears as a compact row at the bottom of the sidebar, with
-the source site's icon and playback controls. Hover over it or move keyboard focus into it to reveal the title,
-timeline and extra actions. Pause, resume, seek, mute and adjust volume without switching tabs.
-
-![ZeniPlayer controlling local demonstration audio](docs/images/zeni-player.png)
-
-Choose between available media sources. Previous and next controls become available when the site registers those
-actions. Picture in picture depends on video support and playback permissions. Hiding the controls does not stop audio.
-While a video is in picture in picture, the sidebar player stays hidden. It returns when that floating window closes.
-
-![ZeniPlayer in its default compact state](docs/images/zeni-player-minimizado.png)
-
-The player controls HTML audio and video elements. Some sites use custom media systems or restrict picture in picture;
-you can always open the source tab from the track title.
 
 ## A menu that fits the sidebar
 
@@ -147,8 +130,8 @@ can be adjusted in Vivaldi settings.
 | `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador` | Updater, cached packages and the latest result. |
 
 The installer changes UI loading, layout, shortcuts and scrolling options. It does not import or delete passwords,
-bookmarks or history. ZeniPeek and ZeniPlayer use page scripts to detect links and media and communicate with the local
-browser UI. No Zenivaldi server receives page contents or playback metadata. Pages and artwork still make their normal
+bookmarks or history. ZeniPeek uses page scripts to detect links and communicate with the local
+browser UI. No Zenivaldi server receives page contents. Pages still make their normal
 network requests; choosing Google search sends that query to Google.
 
 If you already use another CSS mod directory, Zenivaldi becomes the active directory and saves the previous value for
@@ -168,7 +151,7 @@ removal. Combining independent mods has not been validated.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development and native validation steps.
 
-ZeniPeek and ZeniPlayer are focused adaptations of the concepts and Vivaldi integration techniques in
+ZeniPeek is a focused adaptation of the concepts and Vivaldi integration techniques in
 [Awesome Vivaldi](https://github.com/PaRr0tBoY/Awesome-Vivaldi). Credits are preserved in
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), with the GPL version 3 license in [LICENSE](LICENSE).
 

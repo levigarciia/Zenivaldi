@@ -4,7 +4,7 @@
 
 [English](../README.md)
 
-**Prévia de desenvolvimento:** o código atual inclui ZeniPeek, ZeniPlayer e a instalação automática completa.
+**Prévia de desenvolvimento:** o código atual inclui ZeniPeek e a instalação automática completa.
 Essas mudanças ainda não estão no pacote da última versão publicada.
 
 <p>Seu Vivaldi com mais espaço e um visual inspirado no Zen Browser.</p>
@@ -131,16 +131,6 @@ Use **Alt+clique** em um link para abrir uma prévia grande e interativa sobre a
 
 A prévia usa uma página real do navegador, não uma imagem. Há uma prévia por janela. Ao fechar, sua aba temporária é removida e a aba de origem continua disponível.
 
-## ZeniPlayer
-
-Quando um site reproduz áudio ou vídeo compatível, o ZeniPlayer aparece recolhido no rodapé da lateral, com o ícone do site e os controles de reprodução. Passe o mouse ou use o teclado para revelar título, progresso e ações adicionais. Controle pausa, reprodução, posição, volume e mudo sem trocar de aba.
-
-![ZeniPlayer controlando áudio local de demonstração](images/zeni-player.png)
-
-Você pode escolher entre fontes de mídia abertas. Os controles de faixa aparecem quando o site fornece essas ações. PiP depende de suporte do vídeo, do navegador e das permissões de reprodução. Ocultar os controles não interrompe o áudio. Enquanto houver um vídeo em PiP, o player da lateral fica oculto e retorna quando a janela flutuante fecha.
-
-![ZeniPlayer recolhido por padrão](images/zeni-player-minimizado.png)
-
 ## Como usar a pesquisa
 
 * Sem texto: mostra as abas da janela atual. Escolher uma delas ativa a aba existente.
@@ -217,7 +207,7 @@ Consulte o [guia de contribuição](CONTRIBUTING.pt-BR.md).
 
 ## Créditos
 
-ZeniPeek e ZeniPlayer usam como referência o [Awesome Vivaldi](https://github.com/PaRr0tBoY/Awesome-Vivaldi).
+O ZeniPeek usa como referência o [Awesome Vivaldi](https://github.com/PaRr0tBoY/Awesome-Vivaldi).
 Os créditos estão em [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md), com licença GPL versão 3 em [LICENSE](../LICENSE).
 
 Projeto independente, inspirado no Zen Browser e feito para o Vivaldi. Não é um produto oficial de nenhum dos dois navegadores.

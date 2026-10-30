@@ -24,10 +24,8 @@ the maintainer asking you to do so.
 | :--- | :--- |
 | `src/manifesto.json` | Ordered UI scripts, stylesheets and page resources installed with the mod. |
 | `src/zeni-paginas.js` | Page integration and communication with the browser UI. |
-| `src/zeni-pagina-inicio.js` | Link detection and HTML media controls in the isolated page context. |
-| `src/zeni-midia-inicio.js` | Media Session action detection in the page context. |
+| `src/zeni-pagina-inicio.js` | Link detection in the isolated page context. |
 | `src/zeni-peek.js` | Interactive preview and temporary tab lifecycle. |
-| `src/zeni-player.js` | Sidebar playback controls and source selection. |
 | `scripts/Configurar.ps1` | Installation, backups and removal. |
 | `scripts/Layout.ps1` | Sidebar layout and shortcut setup, with restoration. |
 | `scripts/Atualizar.ps1` | Update verification and repair. |
@@ -67,10 +65,8 @@ The automatic tests do not prove native rendering, media playback or webview beh
 5. Closing the bottom tab animates its exit. Closing a middle tab also animates the remaining tabs moving up.
 6. Reduced motion disables these animations.
 7. Alt+click opens a large page in ZeniPeek. Test dismissal, opening in a regular tab and native side by side tiling.
-8. ZeniPlayer starts compact and expands on hover or keyboard focus. Test playback controls and source selection.
-   Enter picture in picture and check that the player disappears, then returns when picture in picture closes.
-9. Closing a preview removes its temporary tab. Closing a media tab removes its controls.
-10. Installation, reapplication and removal preserve unrelated settings.
+8. Closing a preview removes its temporary tab.
+9. Installation, reapplication and removal preserve unrelated settings.
 
 Keep the exact tested browser version and limitations in [the validation record](docs/VALIDACAO.md).
 
@@ -83,6 +79,6 @@ Capture the interface itself rather than building a mockup. Do not imply a featu
 
 ## Reference and license
 
-ZeniPeek and ZeniPlayer draw on the feature design and Vivaldi integration techniques in
+ZeniPeek draws on the feature design and Vivaldi integration techniques in
 [Awesome Vivaldi](https://github.com/PaRr0tBoY/Awesome-Vivaldi). See [third party notices](THIRD_PARTY_NOTICES.md) and
 [the GPL version 3 license](LICENSE). Maintain these notices when distributing modified versions.

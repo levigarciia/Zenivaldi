@@ -11,6 +11,4 @@ test('o pacote contém todos os recursos e scripts clássicos válidos', () => {
     for (const arquivo of javascript) {
         expect(() => new Function(readFileSync(join('src', arquivo), 'utf8'))).not.toThrow();
     }
-    expect(manifesto.scripts.indexOf('zeni-paginas.js')).toBeLessThan(manifesto.scripts.indexOf('zeni-peek.js'));
-    expect(manifesto.scripts.indexOf('zeni-paginas.js')).toBeLessThan(manifesto.scripts.indexOf('zeni-player.js'));
-});
+    expect(manifesto.scripts.indexOf('zeni-paginas.js')).toBeLessThan(manifesto.scripts.indexOf('zeni-peek.js'));});

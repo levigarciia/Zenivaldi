@@ -7,15 +7,13 @@
         "popups.js",
         "pesquisa.js",
         "zeni-paginas.js",
-        "zeni-peek.js",
-        "zeni-player.js"
+        "zeni-peek.js"
     ],
     "css": [
         "zen.css",
         "zeni-recursos.css"
     ],
     "recursos": [
-        "zeni-midia-inicio.js",
         "zeni-pagina-inicio.js"
     ]
 }
