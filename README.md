@@ -4,7 +4,7 @@
 
 <p>Seu Vivaldi com mais espaço e um visual inspirado no Zen Browser.</p>
 
-<p>Abas na lateral. Pesquisa flutuante. Links que abrem direto.</p>
+<p>Seus sites favoritos fixados. Abas na lateral. Pesquisa flutuante.</p>
 
 <p>
 <a href="https://github.com/levigarciia/Zenivaldi/releases/latest"><strong>Baixar para Windows</strong></a>
@@ -19,9 +19,21 @@
 
 <p align="center"><em>Captura real do Vivaldi em perfil de demonstração, com página e dados fictícios.</em></p>
 
-| Mais espaço | Pesquisa mais clara | Instalação simples |
+| Seus sites sempre à mão | Pesquisa mais clara | Instalação simples |
 | :--- | :--- | :--- |
-| Abas organizadas na lateral e recolhimento automático opcional. | Endereços simples primeiro e Google sempre disponível. | Baixe, extraia e execute. Sem ferramentas de programação. |
+| Abas fixadas em pequenos cartões com ícones, acima das outras abas. | Endereços simples primeiro e Google sempre disponível. | Baixe, extraia e execute. Sem ferramentas de programação. |
+
+## Seus favoritos viram abas fixadas
+
+YouTube, WhatsApp, GitHub ou qualquer site que você usa todo dia: fixe a aba e deixe seu ícone no topo da lateral. Os sites fixados ficam em pequenos cartões, separados das abas comuns, sem uma lista de títulos ocupando espaço.
+
+<p align="center">
+<img src="docs/images/abas-fixadas.png" alt="Abas fixadas do YouTube, X e WhatsApp em cartões com ícones, acima das abas comuns">
+</p>
+
+**Para fixar:** abra o site, clique com o botão direito na aba e escolha **Fixar aba**. Para desfazer, use **Desafixar aba** no mesmo menu. Você também pode arrastar as abas fixadas para mudar a ordem.
+
+Essa função usa as abas fixadas do próprio Vivaldi. O Zenivaldi cuida do visual, sem criar atalhos extras nem depender de uma conta do mod.
 
 ## Cole um link e abra direto
 
@@ -38,6 +50,9 @@ O pacote tem dois arquivos para usar com dois cliques: **Instalar.cmd** para ins
 ## O que muda
 
 * Abas verticais com ícones alinhados e animação suave quando outras abas sobem após um fechamento.
+* Abas fixadas em cartões compactos no topo, com os ícones dos seus sites.
+* Menu e botão de mostrar ou ocultar o painel junto de voltar, avançar e recarregar na lateral.
+* Barra superior duplicada oculta quando o campo de endereço já está na lateral. Os controles da janela continuam disponíveis.
 * Pesquisa flutuante com o mesmo visual ao abrir e durante a digitação.
 * Sugestões que priorizam a página principal dos sites e reduzem endereços repetidos.
 * Opção de pesquisar no Google sempre visível no topo da lista.
@@ -82,6 +97,8 @@ O instalador cuida do visual. A posição das barras é uma configuração do pr
 5. Se preferir usar **Ctrl+T**, abra **Configurações > Teclado**, remova esse atalho de **Nova aba** e atribua a **Comandos rápidos**.
 
 Os nomes e a localização dessas opções podem variar conforme a versão e o idioma do Vivaldi. O instalador não reorganiza suas barras nem substitui seus atalhos.
+
+Com o campo de endereço na lateral, a barra superior duplicada desaparece automaticamente. Os botões de menu e de painel ficam na primeira linha da lateral, junto da navegação. **Ctrl+L** continua selecionando o endereço, agora na lateral. Se os controles necessários não forem encontrados, o mod mantém a barra original visível.
 
 ## Como usar a pesquisa
 

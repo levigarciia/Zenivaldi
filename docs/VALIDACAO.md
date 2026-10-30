@@ -23,6 +23,9 @@ Os scripts de interface que deram origem a esta distribuição foram testados em
 * Confirmar que dois Enters seguidos não duplicam a abertura.
 * Colar um link sem correspondência no histórico e confirmar a opção de abertura direta imediatamente.
 * Abrir esse link com Enter, preservando caminho, parâmetros e fragmento, depois reabrir o modal.
+* Integrar menu e controle de painel na lateral e ocultar a barra superior duplicada.
+* Alternar o painel pelo botão novo e focar o endereço lateral com Ctrl+L.
+* Manter os controles da janela acessíveis e capturar as abas fixadas com ícones de sites públicos.
 
 Em testes controlados anteriores também foram verificados o deslocamento animado das abas, o reposicionamento de popups e a rolagem sem barra visível. Não foi feita uma validação de todos os sites, extensões, instalações portáteis ou combinações de mods.
 
