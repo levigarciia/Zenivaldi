@@ -81,6 +81,12 @@ permaneceu visível ao receber foco e abriu um popup de 300 pixels dentro dos li
 Essa verificação cobre interação e geometria com um controle de teste, não a execução de uma extensão instalada.
 A revisão automática bloqueou o comando que carregaria uma extensão de teste, sem fornecer motivo detalhado.
 
+## Compatibilidade do atualizador com versões anteriores
+
+Onze testes passaram, com 91 asserções. O atualizador reconhece os seis scripts e o CSS dos pacotes
+anteriores à versão 0.2.0, que não continham `src/manifesto.json`. Foram conferidos o caso já instalado
+e o reparo offline de um arquivo ausente. Pacotes novos sem manifesto continuam sendo recusados como incompletos.
+
 ## Antes de publicar uma mudança na interface
 
 1. Use um perfil separado e sem dados pessoais.

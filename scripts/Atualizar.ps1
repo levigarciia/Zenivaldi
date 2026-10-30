@@ -79,7 +79,21 @@ try {
     $recursos = Join-Path $versaoVivaldi.FullName 'resources\vivaldi'
     $html = [IO.File]::ReadAllText((Join-Path $recursos 'window.html'))
     $reparar = -not $html.Contains('user_files/zenivaldi/pesquisa.js')
-    $manifesto = [IO.File]::ReadAllText((Join-Path $pacote 'src\manifesto.json')) | ConvertFrom-Json
+    $caminhoManifesto = Join-Path $pacote 'src\manifesto.json'
+    if (Test-Path -LiteralPath $caminhoManifesto) {
+        $manifesto = [IO.File]::ReadAllText($caminhoManifesto) | ConvertFrom-Json
+    } else {
+        $metadados = [IO.File]::ReadAllText((Join-Path $pacote 'package.json')) | ConvertFrom-Json
+        if ($metadados.name -ne 'zenivaldi' -or [version]$metadados.version -ge [version]'0.2.0') {
+            throw 'O pacote em cache está incompleto. Reinstale o Zenivaldi com o pacote oficial.'
+        }
+        $manifesto = [pscustomobject]@{
+            scripts = @('animacoes-abas.js', 'autohide-barra.js', 'menu-compacto.js',
+                'menu-barra.js', 'popups.js', 'pesquisa.js')
+            recursos = @()
+            css = @('zen.css')
+        }
+    }
     foreach ($nome in $manifesto.scripts) {
         if (-not (Test-Path -LiteralPath (Join-Path $recursos "user_files\zenivaldi\$nome")) -or
             -not $html.Contains("user_files/zenivaldi/$nome")) { $reparar = $true }

@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSync, cpSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -56,6 +56,59 @@ function Invoke-RestMethod { throw 'A rede não deveria ser usada' }
         expect(readFileSync(join(dados.pasta, 'ultimo-resultado.txt'), 'utf8')).toContain('Vivaldi aberto');
     } finally { rmSync(dados.raiz, {recursive:true, force:true}); }
 }, 30000);
+
+test('aceita cache legado sem manifesto e mantém o reparo offline', () => {
+    const dados = preparar();
+    try {
+        const pacote = join(dados.pasta, 'pacotes', '0.1.5');
+        mkdirSync(join(pacote, 'src'), {recursive:true});
+        mkdirSync(join(pacote, 'scripts'));
+        writeFileSync(join(pacote, 'package.json'), JSON.stringify({name:'zenivaldi', version:'0.1.5'}));
+        const nomes = ['animacoes-abas.js', 'autohide-barra.js', 'menu-compacto.js',
+            'menu-barra.js', 'popups.js', 'pesquisa.js'];
+        const destinoScripts = join(dados.recursos, 'user_files', 'zenivaldi');
+        mkdirSync(destinoScripts, {recursive:true});
+        mkdirSync(join(dados.raiz, 'Zenivaldi'));
+        writeFileSync(join(dados.raiz, 'Zenivaldi', 'zen.css'), '');
+        for (const nome of nomes) {
+            writeFileSync(join(pacote, 'src', nome), '');
+            writeFileSync(join(destinoScripts, nome), '');
+        }
+        writeFileSync(join(dados.recursos, 'window.html'), nomes.map(nome =>
+            `<script src="user_files/zenivaldi/${nome}"></script>`).join('\n'));
+        writeFileSync(join(pacote, 'scripts', 'Configurar.ps1'), `param($RaizVivaldi, $Perfil,
+    [switch]$SemAtualizacaoAutomatica)
+$recursos = Join-Path $RaizVivaldi 'Application\\8.2.4133.96\\resources\\vivaldi'
+Copy-Item -Path (Join-Path $PSScriptRoot '..\\src\\*.js') -Destination (Join-Path $recursos 'user_files\\zenivaldi')
+Write-Output 'Reparo legado executado'
+`);
+        const configuracao = JSON.parse(readFileSync(dados.configuracao, 'utf8'));
+        configuracao.versao = '0.1.5';
+        configuracao.pacote = pacote;
+        writeFileSync(dados.configuracao, JSON.stringify(configuracao));
+        const argumentos = ['-Configuracao', dados.configuracao, '-SomenteCache'];
+        executar(resolve('scripts/Atualizar.ps1'), argumentos);
+        expect(readFileSync(join(dados.pasta, 'ultimo-resultado.txt'), 'utf8')).toContain('já está atualizado');
+        rmSync(join(destinoScripts, 'popups.js'));
+        executar(resolve('scripts/Atualizar.ps1'), argumentos);
+        expect(readdirSync(destinoScripts)).toContain('popups.js');
+        expect(readFileSync(join(dados.pasta, 'ultimo-resultado.txt'), 'utf8')).toContain('0.1.5 aplicado');
+    } finally { rmSync(dados.raiz, {recursive:true, force:true}); }
+}, 30000);
+
+test('recusa pacote novo incompleto em vez de tratar como legado', () => {
+    const dados = preparar();
+    try {
+        const pacote = join(dados.pasta, 'incompleto');
+        mkdirSync(pacote);
+        cpSync('package.json', join(pacote, 'package.json'));
+        const configuracao = JSON.parse(readFileSync(dados.configuracao, 'utf8'));
+        configuracao.pacote = pacote;
+        writeFileSync(dados.configuracao, JSON.stringify(configuracao));
+        expect(() => executar(resolve('scripts/Atualizar.ps1'),
+            ['-Configuracao', dados.configuracao, '-SomenteCache'])).toThrow('pacote em cache está incompleto');
+    } finally { rmSync(dados.raiz, {recursive:true, force:true}); }
+});
 
 test('valida o download antes de aplicar uma versão nova', () => {
     const dados = preparar();
