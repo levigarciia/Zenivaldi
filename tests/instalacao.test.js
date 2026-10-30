@@ -20,7 +20,8 @@ test('instala, reaplica e remove sem perder preferências existentes', () => {
     }));
     const executar = (remover = false) => {
         const processo = Bun.spawnSync(['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass',
-            '-File', resolve('scripts/Configurar.ps1'), '-RaizVivaldi', raiz, ...(remover ? ['-Remover'] : [])]);
+            '-File', resolve('scripts/Configurar.ps1'), '-RaizVivaldi', raiz, '-SemAtualizacaoAutomatica',
+            ...(remover ? ['-Remover'] : [])]);
         expect(processo.exitCode).toBe(0);
     };
     try {

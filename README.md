@@ -35,17 +35,23 @@ YouTube, WhatsApp, GitHub ou qualquer site que você usa todo dia: fixe a aba e 
 
 Essa função usa as abas fixadas do próprio Vivaldi. O Zenivaldi cuida do visual, sem criar atalhos extras nem depender de uma conta do mod.
 
-## Cole um link e abra direto
+## Pesquise sem atrito
 
-Ao colar um endereço, **Abrir endereço** já fica selecionado. Pressione **Enter** para abrir o site. A opção de pesquisar no Google continua no topo, caso você prefira.
+Abra o modal com **F2** e encontre seu próximo destino sem sair do teclado. Alterne entre as abas abertas, encontre sites no histórico, cole um link ou faça uma pesquisa no Google, tudo no mesmo lugar.
+
+* **Encontre o site, não uma lista de posts:** as sugestões priorizam a página principal e os caminhos mais simples, sem repetir endereços que só mudam no fragmento.
+* **Cole e abra:** links e domínios ficam prontos para abrir com Enter, mesmo que você nunca tenha visitado o site.
+* **Google sempre à mão:** a opção de pesquisar fica fixa no topo, inclusive quando há sugestões de sites.
+* **Continue de onde parou:** sem texto, o modal mostra as abas da janela atual. Escolher uma delas ativa a aba existente.
+* **Tudo pelo teclado:** use as setas para escolher e Enter para abrir. O modal fecha ao confirmar o destino e mantém o mesmo visual ao ser aberto novamente.
 
 ![Pesquisa flutuante com o link selecionado para abrir e o Google como alternativa](docs/images/abrir-link.png)
 
-Funciona também com domínios sem `https://`, como `exemplo.com/leituras`, mesmo que você nunca tenha visitado o endereço. O modal fecha ao abrir o resultado e mantém o visual ao ser aberto novamente.
+Na captura, o link colado já está selecionado em **Abrir endereço**, com o Google disponível como alternativa. Também funciona com domínios sem `https://`, como `exemplo.com/leituras`.
 
 ## Instale sem programar
 
-O pacote tem dois arquivos para usar com dois cliques: **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar. Você não precisa mexer nos arquivos de código.
+Use **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar. As atualizações automáticas são ativadas na instalação. Você não precisa mexer nos arquivos de código.
 
 ## O que muda
 
@@ -60,6 +66,7 @@ O pacote tem dois arquivos para usar com dois cliques: **Instalar.cmd** para ins
 * Fechamento do modal ao abrir um resultado com clique ou Enter.
 * Ajuste de posição dos popups para evitar que fiquem cortados pela janela.
 * Barra lateral que recolhe mais rápido, respeitando campos de texto e popups abertos.
+* Atualizações automáticas e restauração dos scripts após atualizações do Vivaldi, quando o navegador estiver fechado.
 
 O Zenivaldi modifica a interface do Vivaldi. Ele não instala o Zen Browser e não troca o mecanismo que abre os sites.
 
@@ -82,7 +89,7 @@ O instalador não precisa de Bun, Node.js, Git ou editor de código. Ele usa o P
 5. Feche o Vivaldi e dê dois cliques em **Instalar.cmd**.
 6. Aguarde a mensagem de instalação concluída e abra o Vivaldi novamente.
 
-Pronto. O instalador ativa o carregamento do CSS e dos scripts e cria um backup antes das alterações.
+Pronto. O instalador ativa o carregamento do CSS e dos scripts, cria um backup antes das alterações e registra a verificação automática para seu usuário do Windows.
 
 Se o Windows mostrar uma confirmação para executar o arquivo, confira se ele veio deste repositório. Não é necessário desativar o antivírus nem mudar configurações permanentes de segurança.
 
@@ -111,9 +118,25 @@ Com o campo de endereço na lateral, a barra superior duplicada desaparece autom
 
 A opção do Google usa explicitamente o Google, mesmo que outro buscador esteja configurado no navegador. As sugestões vêm do histórico local. Não há um servidor do Zenivaldi recebendo o que você digita; a pesquisa escolhida é enviada ao Google quando você a abre.
 
+## Atualizações sem baixar tudo de novo
+
+A partir da versão **0.1.3**, o instalador ativa uma tarefa do Windows que verifica atualizações **a cada hora**, enquanto seu usuário está conectado. Não é necessário manter a pasta baixada aberta, nem deixar um programa do Zenivaldi rodando continuamente.
+
+* Busca a versão estável mais recente nas releases deste repositório.
+* Confere o SHA256 do ZIP informado pelo GitHub antes de usar o pacote.
+* Só aplica mudanças com o Vivaldi fechado. Se ele estiver aberto, tenta de novo na próxima verificação, sem encerrar suas abas.
+* Se uma atualização do Vivaldi remover os scripts, reaplica a cópia local do mod, inclusive sem internet.
+* Mantém backups das preferências e dos arquivos de carregamento antes da instalação.
+
+**Já usava uma versão anterior?** Baixe a versão atual e execute **Instalar.cmd** uma vez, com o Vivaldi fechado. As versões antigas não tinham um atualizador capaz de ativar esse recurso sozinhas.
+
+**Quer verificar agora?** Feche o Vivaldi e execute **Atualizar.cmd**. Para desativar apenas as atualizações, use **DesativarAtualizacoes.cmd**. O mod continua instalado. Execute **Instalar.cmd** novamente para reativar.
+
+O resultado da última tentativa fica em `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador\ultimo-resultado.txt`. Se o Windows impedir o agendamento, o instalador avisa; nesse caso, você ainda pode reaplicar o mod manualmente. Instalações em pastas protegidas podem não permitir atualizações com as permissões normais do usuário.
+
 ## Atualizou o Vivaldi e o visual sumiu?
 
-Isso pode acontecer porque uma atualização substitui os arquivos que carregam os scripts. O CSS pode continuar aparecendo enquanto a lista de pesquisa volta ao visual original.
+Isso pode acontecer porque uma atualização substitui os arquivos que carregam os scripts. O CSS pode continuar aparecendo enquanto a lista de pesquisa volta ao visual original. Com a atualização automática ativada, feche o navegador e aguarde a próxima verificação ou execute **Atualizar.cmd**. Para reaplicar manualmente:
 
 1. Feche o Vivaldi.
 2. Abra a pasta do Zenivaldi e execute **Instalar.cmd** novamente.
@@ -127,6 +150,8 @@ Feche o Vivaldi e dê dois cliques em **Remover.cmd** na pasta extraída.
 
 Isso desativa os scripts deste instalador e restaura a configuração anterior de carregamento do CSS. Os backups são mantidos. As posições das barras e os atalhos que você ajustou manualmente continuam como estavam.
 
+A tarefa de atualização também é desativada, para que o mod não volte a ser instalado depois da remoção.
+
 O script de recolhimento ajusta os tempos internos de animação da barra. Esses valores podem permanecer após a remoção, e podem ser ajustados nas configurações do Vivaldi.
 
 ## Onde os arquivos ficam
@@ -134,6 +159,7 @@ O script de recolhimento ajusta os tempos internos de animação da barra. Esses
 * Mod instalado: `%LOCALAPPDATA%\Vivaldi\Zenivaldi`.
 * Backups: `%LOCALAPPDATA%\Vivaldi\ZenivaldiBackups`.
 * Scripts carregados: pasta `user_files\zenivaldi` dentro dos recursos da versão instalada do Vivaldi.
+* Atualizador e pacotes locais: `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador`.
 
 O instalador altera o documento da interface, a pasta de CSS e a opção experimental que permite CSS personalizado. Ele não importa nem apaga suas senhas, favoritos ou histórico. Os backups de preferências são locais e podem conter configurações pessoais. Não publique essa pasta.
 
@@ -161,7 +187,7 @@ Com [Bun](https://bun.sh) instalado, execute:
 bun test
 ```
 
-Os testes criam uma instalação simulada e verificam instalação, reaplicação e remoção. Não usam seu perfil real. Os testes de interface nativa foram feitos separadamente em perfil isolado do Vivaldi; não fazem parte da suíte automática.
+Os testes criam uma instalação simulada e verificam instalação, reaplicação, remoção e atualização. Eles simulam o download de um ZIP válido e de um pacote com integridade incorreta, sem acessar a rede nem agendar tarefas. Não usam seu perfil real. O agendamento e a interface nativa foram validados separadamente; não fazem parte da suíte automática.
 
 Para uma instalação em outro caminho que mantenha as pastas `Application` e `User Data`:
 

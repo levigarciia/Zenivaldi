@@ -1,7 +1,8 @@
 ﻿param(
     [string]$RaizVivaldi = (Join-Path $env:LOCALAPPDATA 'Vivaldi'),
     [string]$Perfil = 'Default',
-    [switch]$Remover
+    [switch]$Remover,
+    [switch]$SemAtualizacaoAutomatica
 )
 
 $ErrorActionPreference = 'Stop'
@@ -100,6 +101,16 @@ try {
     Gravar-Texto $preferencias ($prefs | ConvertTo-Json -Depth 100 -Compress)
     Gravar-Texto $estadoLocal ($local | ConvertTo-Json -Depth 100 -Compress)
     Gravar-Texto $janela $html
+    if (-not $SemAtualizacaoAutomatica) {
+        . (Join-Path $PSScriptRoot 'Automacao.ps1')
+        if ($Remover) { Desativar-Atualizacao $raiz }
+        else {
+            try {
+                $configuracao = Registrar-Atualizacao $raiz $Perfil (Split-Path $PSScriptRoot -Parent)
+                Write-Host 'Atualizações automáticas ativadas. A verificação acontece a cada hora, com o Vivaldi fechado.'
+            } catch { Write-Warning "Mod instalado, mas a atualização automática não foi ativada: $($_.Exception.Message)" }
+        }
+    }
     if ($Remover) { Write-Host 'Zenivaldi desativado. Abra o Vivaldi.' }
     else { Write-Host "Zenivaldi instalado no Vivaldi $($versao.Name). Abra o navegador e consulte o README." }
     Write-Host "Backup salvo em: $backup"

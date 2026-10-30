@@ -13,9 +13,15 @@
         grupo.className = `button-toolbar zen-${nome}-slot`;
         const botao = original.cloneNode(true);
         botao.removeAttribute('id');
+        botao.removeAttribute('style');
+        botao.removeAttribute('hidden');
+        botao.removeAttribute('inert');
         botao.className = 'ToolbarButton-Button';
         botao.tabIndex = 0;
         if (nome === 'menu') {
+            const icone = original.querySelector('.vivaldi-v svg') || original.querySelector('svg');
+            if (icone) botao.replaceChildren(icone.cloneNode(true));
+            else botao.textContent = 'V';
             botao.addEventListener('mousedown', evento => {
                 if (evento.button !== 0) return;
                 evento.preventDefault();

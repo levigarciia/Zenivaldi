@@ -628,6 +628,10 @@
 #browser.tabs-left .zen-menu-slot svg {
     width: 20px;
     height: 20px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    fill: currentColor;
 }
 
 #browser.zen-barra-integrada #main > .mainbar,

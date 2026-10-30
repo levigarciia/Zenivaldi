@@ -10,6 +10,11 @@ Execute `bun test` no Windows.
 * Remoção preservando preferências criadas depois da instalação.
 * Priorização da página principal, deduplicação e descarte de URLs internas nas sugestões.
 * Reconhecimento de links completos, domínios sem protocolo e manutenção da pesquisa para texto comum.
+* Reparo com pacote em cache, sem rede, e ausência de reinstalação quando o mod está presente.
+* Adiamento com o navegador aberto, sem download nem alteração dos arquivos.
+* Recusa de ZIP com SHA256 incorreto e atualização com ZIP válido em ambiente simulado.
+
+O registro de uma tarefa temporária também foi validado no Windows: intervalo de uma hora, execução com privilégios limitados e remoção ao desativar. Essa tarefa foi removida ao terminar a validação e não faz parte da suíte automática.
 
 Esses testes não alteram a instalação real do Vivaldi.
 
@@ -26,6 +31,7 @@ Os scripts de interface que deram origem a esta distribuição foram testados em
 * Integrar menu e controle de painel na lateral e ocultar a barra superior duplicada.
 * Alternar o painel pelo botão novo e focar o endereço lateral com Ctrl+L.
 * Manter os controles da janela acessíveis e capturar as abas fixadas com ícones de sites públicos.
+* Manter o ícone do menu visível mesmo quando o contêiner do ícone original do Vivaldi está oculto.
 
 Em testes controlados anteriores também foram verificados o deslocamento animado das abas, o reposicionamento de popups e a rolagem sem barra visível. Não foi feita uma validação de todos os sites, extensões, instalações portáteis ou combinações de mods.
 
