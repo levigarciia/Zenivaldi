@@ -16,6 +16,7 @@
     ],
     "recursos": [
         "zeni-midia-inicio.js",
+        "zeni-pip-inicio.js",
         "zeni-pagina-inicio.js"
     ]
 }

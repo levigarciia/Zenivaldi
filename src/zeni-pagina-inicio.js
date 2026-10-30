@@ -19,8 +19,12 @@
             || (midiaAtual?.isConnected && !midiaAtual.ended ? midiaAtual : null);
     }
 
+    function flutuando() {
+        return !!document.pictureInPictureElement || !!window.__zeniPip?.ativo();
+    }
+
     function publicar() {
-        enviar('zeni-pip', !!document.pictureInPictureElement);
+        enviar('zeni-pip', flutuando());
         midiaAtual = escolherMidia();
         clearTimeout(temporizador);
         if (!midiaAtual) return enviar('zeni-media', null);
@@ -32,7 +36,7 @@
             podeBuscar:midiaAtual.seekable.length > 0,
             pausado:midiaAtual.paused, mudo:midiaAtual.muted, volume:midiaAtual.volume,
             video:midiaAtual.tagName === 'VIDEO', anterior:!!acoes.anterior, proxima:!!acoes.proxima,
-            pip:!!document.pictureInPictureElement
+            pip:flutuando()
         });
         if (!midiaAtual.paused) temporizador = setTimeout(publicar, 1000);
     }
@@ -65,7 +69,9 @@
                     window.dispatchEvent(new CustomEvent('zeni-media-trocar-faixa', {detail:mensagem.acao}));
                     break;
                 case 'pip':
-                    if (document.pictureInPictureElement) await document.exitPictureInPicture();
+                    if (window.__zeniPip?.ativo()) window.__zeniPip.fechar();
+                    else if (document.pictureInPictureElement) await document.exitPictureInPicture();
+                    else if (window.__zeniPip && item instanceof HTMLVideoElement) await window.__zeniPip.abrir(item);
                     else await item.requestPictureInPicture();
                     break;
                 default: return responder({erro:'Comando desconhecido'});
@@ -94,6 +100,7 @@
     window.addEventListener('zeni-media-acoes', evento => {
         try { acoes = JSON.parse(evento.detail); } catch { acoes = {}; }
     }, {signal:controle.signal});
+    window.addEventListener('zeni-pip-mudou', publicar, {signal:controle.signal});
     window.dispatchEvent(new Event('zeni-media-pedir-acoes'));
     chrome.runtime.onMessage.addListener(receber);
     const observar = new MutationObserver(() => { if (midiaAtual && !midiaAtual.isConnected) publicar(); });
