@@ -17,6 +17,7 @@
 }
 
 #browser.tabs-left .tabbar-wrapper {
+    position: relative;
     background: linear-gradient(145deg, #0e0c19, #080711 75%) !important;
     border: 1px solid #302d3d !important;
     border-radius: 10px;
@@ -689,4 +690,68 @@
     right: 108px;
     height: 28px;
     -webkit-app-region: drag;
+}
+
+#browser .zen-menu-compacto {
+    position: absolute !important;
+    inset: 44px 6px auto 6px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    max-height: calc(100% - 52px);
+    overflow-y: auto;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #393542;
+    border-radius: 8px;
+    background: #19171f;
+    color: #d2ceda;
+    box-shadow: 0 8px 24px #0006;
+    z-index: 40;
+    scrollbar-width: none;
+    -webkit-app-region: no-drag;
+}
+
+#browser .zen-menu-compacto::before,
+#browser .zen-menu-compacto::after {
+    display: none;
+}
+
+#browser .zen-menu-compacto > button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 34px;
+    padding: 7px 10px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+#browser .zen-menu-compacto > button:hover,
+#browser .zen-menu-compacto > button:focus-visible {
+    outline: none;
+    background: #302b3a;
+}
+
+#browser .zen-menu-compacto [role="separator"] {
+    height: 1px;
+    margin: 5px 6px;
+    background: #35303e;
+}
+
+#browser .zen-menu-completo::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    margin-right: 3px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    transform: rotate(45deg);
 }

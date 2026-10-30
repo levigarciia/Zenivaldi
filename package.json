@@ -1,7 +1,7 @@
 {
     "name": "zenivaldi",
     "private": true,
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Visual inspirado no Zen para o Vivaldi no Windows",
     "scripts": {
         "test": "bun test"

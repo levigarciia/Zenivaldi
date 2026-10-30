@@ -12,11 +12,13 @@ test('instala, reaplica e remove sem perder preferências existentes', () => {
     writeFileSync(join(recursos, 'window.html'), '<html><head>\n</head><body></body></html>');
     const preferencias = join(dados, 'Default', 'Preferences');
     writeFileSync(preferencias, JSON.stringify({
-        vivaldi: { appearance: { css_ui_mods_directory: 'C:\\EstiloAnterior' } },
+        vivaldi: { appearance: { css_ui_mods_directory: 'C:\\EstiloAnterior' },
+            theme: {simple_scrollbar:false}, webpages: {smooth_scrolling:{enabled:false}} },
         exemplo: { manter: [1, 2], nome: 'Preferência existente' }
     }));
     writeFileSync(join(dados, 'Local State'), JSON.stringify({
-        browser: { enabled_labs_experiments: ['outra-opcao@1'] }, exemplo: true
+        browser: { enabled_labs_experiments: ['outra-opcao@1', 'overlay-scrollbars@2', 'smooth-scrolling@2'] },
+        exemplo: true
     }));
     const executar = (remover = false) => {
         const processo = Bun.spawnSync(['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass',
@@ -34,6 +36,10 @@ test('instala, reaplica e remove sem perder preferências existentes', () => {
         const atualizado = JSON.parse(readFileSync(preferencias, 'utf8'));
         expect(atualizado.exemplo).toEqual({ manter: [1, 2], nome: 'Preferência existente' });
         expect(atualizado.vivaldi.appearance.css_ui_mods_directory).toBe(join(raiz, 'Zenivaldi'));
+        expect(atualizado.vivaldi.theme.simple_scrollbar).toBe(true);
+        expect(atualizado.vivaldi.webpages.smooth_scrolling.enabled).toBe(true);
+        expect(JSON.parse(readFileSync(join(dados, 'Local State'), 'utf8')).browser.enabled_labs_experiments)
+            .toEqual(['outra-opcao@1', 'vivaldi-css-mods@1', 'overlay-scrollbars@1', 'smooth-scrolling@1']);
         const recursosNovos = join(raiz, 'Application', '8.2.4133.97', 'resources', 'vivaldi');
         mkdirSync(recursosNovos, { recursive: true });
         writeFileSync(join(recursosNovos, 'window.html'), '<html><head>\n</head><body></body></html>');
@@ -45,9 +51,11 @@ test('instala, reaplica e remove sem perder preferências existentes', () => {
         const removido = JSON.parse(readFileSync(preferencias, 'utf8'));
         expect(removido.vivaldi.appearance.css_ui_mods_directory).toBe('C:\\EstiloAnterior');
         expect(removido.exemplo.novo).toBe('Preservar também após remover');
+        expect(removido.vivaldi.theme.simple_scrollbar).toBe(false);
+        expect(removido.vivaldi.webpages.smooth_scrolling.enabled).toBe(false);
         expect(readFileSync(join(recursosNovos, 'window.html'), 'utf8')).not.toContain('user_files/zenivaldi');
         expect(JSON.parse(readFileSync(join(dados, 'Local State'), 'utf8')).browser.enabled_labs_experiments)
-            .toEqual(['outra-opcao@1']);
+            .toEqual(['outra-opcao@1', 'overlay-scrollbars@2', 'smooth-scrolling@2']);
     } finally {
         rmSync(raiz, { recursive: true, force: true });
     }

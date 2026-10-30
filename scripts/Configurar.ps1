@@ -47,12 +47,15 @@ try {
     if (-not $html.Contains('</head>')) { throw 'Esta versão do Vivaldi usa uma estrutura não reconhecida.' }
     $prefs = [IO.File]::ReadAllText($preferencias) | ConvertFrom-Json
     $local = [IO.File]::ReadAllText($estadoLocal) | ConvertFrom-Json
-    $aparencia = Garantir-Objeto (Garantir-Objeto $prefs 'vivaldi') 'appearance'
+    $vivaldi = Garantir-Objeto $prefs 'vivaldi'
+    $aparencia = Garantir-Objeto $vivaldi 'appearance'
+    $tema = Garantir-Objeto $vivaldi 'theme'
+    $rolagem = Garantir-Objeto (Garantir-Objeto $vivaldi 'webpages') 'smooth_scrolling'
     $browser = Garantir-Objeto $local 'browser'
     $pastaMod = Join-Path $raiz 'Zenivaldi'
     $estadoMod = Join-Path $pastaMod 'estado.json'
     $origem = Join-Path (Split-Path $PSScriptRoot -Parent) 'src'
-    $scripts = @('animacoes-abas.js', 'autohide-barra.js', 'menu-barra.js', 'popups.js', 'pesquisa.js')
+    $scripts = @('animacoes-abas.js', 'autohide-barra.js', 'menu-compacto.js', 'menu-barra.js', 'popups.js', 'pesquisa.js')
     if ($Remover -and -not (Test-Path -LiteralPath $estadoMod)) {
         throw 'Não há uma instalação do Zenivaldi feita por este instalador.'
     }
@@ -77,15 +80,42 @@ try {
         }
     }
     if ($anterior.perfil -ne $Perfil) { throw 'Este instalador já foi usado em outro perfil desta instalação.' }
-    $experimentos = @($browser.enabled_labs_experiments | Where-Object { $_ -and $_ -notlike 'vivaldi-css-mods@*' })
+    if (-not $Remover -and -not $anterior.PSObject.Properties['rolagem']) {
+        Definir-Valor $anterior 'rolagem' ([pscustomobject]@{
+            experimentos = @($browser.enabled_labs_experiments | Where-Object {
+                $_ -like 'overlay-scrollbars@*' -or $_ -like 'smooth-scrolling@*'
+            })
+            simplesPresente = [bool]$tema.PSObject.Properties['simple_scrollbar']
+            simples = $tema.simple_scrollbar
+            suavePresente = [bool]$rolagem.PSObject.Properties['enabled']
+            suave = $rolagem.enabled
+        })
+    }
+    $experimentos = @($browser.enabled_labs_experiments | Where-Object {
+        $_ -and $_ -notlike 'vivaldi-css-mods@*' -and (-not $anterior.rolagem -or (
+            $_ -notlike 'overlay-scrollbars@*' -and $_ -notlike 'smooth-scrolling@*'
+        ))
+    })
     if ($Remover) {
         Definir-Valor $aparencia 'css_ui_mods_directory' $anterior.pastaCss
-        Definir-Valor $browser 'enabled_labs_experiments' @($experimentos + $anterior.experimentosCss)
+        Definir-Valor $browser 'enabled_labs_experiments' @(
+            $experimentos + $anterior.experimentosCss + $anterior.rolagem.experimentos | Where-Object { $_ }
+        )
+        if ($anterior.rolagem) {
+            if ($anterior.rolagem.simplesPresente) { Definir-Valor $tema 'simple_scrollbar' $anterior.rolagem.simples }
+            else { $tema.PSObject.Properties.Remove('simple_scrollbar') }
+            if ($anterior.rolagem.suavePresente) { Definir-Valor $rolagem 'enabled' $anterior.rolagem.suave }
+            else { $rolagem.PSObject.Properties.Remove('enabled') }
+        }
     } else {
         Gravar-Texto $estadoMod ($anterior | ConvertTo-Json -Depth 10)
         Copy-Item -LiteralPath (Join-Path $origem 'zen.css') -Destination (Join-Path $pastaMod 'zen.css') -Force
         Definir-Valor $aparencia 'css_ui_mods_directory' $pastaMod
-        Definir-Valor $browser 'enabled_labs_experiments' @($experimentos + 'vivaldi-css-mods@1')
+        Definir-Valor $browser 'enabled_labs_experiments' @(
+            $experimentos + 'vivaldi-css-mods@1' + 'overlay-scrollbars@1' + 'smooth-scrolling@1'
+        )
+        Definir-Valor $tema 'simple_scrollbar' $true
+        Definir-Valor $rolagem 'enabled' $true
     }
     foreach ($nome in $scripts) {
         $referencia = "user_files/zenivaldi/$nome"

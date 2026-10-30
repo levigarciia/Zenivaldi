@@ -79,8 +79,9 @@ try {
     $recursos = Join-Path $versaoVivaldi.FullName 'resources\vivaldi'
     $html = [IO.File]::ReadAllText((Join-Path $recursos 'window.html'))
     $reparar = -not $html.Contains('user_files/zenivaldi/pesquisa.js')
-    foreach ($nome in @('animacoes-abas.js', 'autohide-barra.js', 'menu-barra.js', 'popups.js', 'pesquisa.js')) {
-        if (-not (Test-Path -LiteralPath (Join-Path $recursos "user_files\zenivaldi\$nome"))) { $reparar = $true }
+    foreach ($nome in @('animacoes-abas.js', 'autohide-barra.js', 'menu-compacto.js', 'menu-barra.js', 'popups.js', 'pesquisa.js')) {
+        if (-not (Test-Path -LiteralPath (Join-Path $recursos "user_files\zenivaldi\$nome")) -or
+            -not $html.Contains("user_files/zenivaldi/$nome")) { $reparar = $true }
     }
     if (-not (Test-Path -LiteralPath (Join-Path $raiz 'Zenivaldi\zen.css'))) { $reparar = $true }
     if ($reparar -or $novaVersao -ne $config.versao) {

@@ -7,6 +7,16 @@
         painel: '.toolbar-mainbar button[data-name="PanelToggle"]'
     };
 
+    function abrirMenuCompleto(botao) {
+        const retangulo = botao.getBoundingClientRect();
+        const navegador = document.querySelector('#browser');
+        navegador.style.setProperty('--zen-menu-esquerda', `${retangulo.left}px`);
+        navegador.style.setProperty('--zen-menu-topo', `${retangulo.top}px`);
+        document.querySelector(origens.menu)?.dispatchEvent(new MouseEvent('mousedown', {
+            bubbles:true, button:0, buttons:1, clientX:retangulo.left, clientY:retangulo.bottom
+        }));
+    }
+
     function adicionarBotao(barra, nome, original) {
         if (botoes.get(nome)?.isConnected) return;
         const grupo = document.createElement('div');
@@ -22,21 +32,11 @@
             const icone = original.querySelector('.vivaldi-v svg') || original.querySelector('svg');
             if (icone) botao.replaceChildren(icone.cloneNode(true));
             else botao.textContent = 'V';
-            botao.addEventListener('mousedown', evento => {
-                if (evento.button !== 0) return;
-                evento.preventDefault();
-                const retangulo = botao.getBoundingClientRect();
-                const navegador = document.querySelector('#browser');
-                navegador.style.setProperty('--zen-menu-esquerda', `${retangulo.left}px`);
-                navegador.style.setProperty('--zen-menu-topo', `${retangulo.top}px`);
-                document.querySelector(origens.menu)?.dispatchEvent(new MouseEvent('mousedown', {
-                    bubbles:true, button:0, buttons:1, clientX:evento.clientX, clientY:evento.clientY
-                }));
-            });
-            botao.addEventListener('keydown', evento => {
-                if (!['Enter', ' '].includes(evento.key)) return;
-                evento.preventDefault();
-                botao.dispatchEvent(new MouseEvent('mousedown', {bubbles:true, button:0}));
+            botao.setAttribute('aria-haspopup', 'menu');
+            botao.setAttribute('aria-expanded', 'false');
+            botao.addEventListener('click', () => {
+                if (window.menuCompactoZen) window.menuCompactoZen.alternar(botao, () => abrirMenuCompleto(botao));
+                else abrirMenuCompleto(botao);
             });
         } else {
             botao.addEventListener('click', () => {
@@ -122,6 +122,7 @@
             if (quadro !== null) cancelAnimationFrame(quadro);
             document.removeEventListener('focusin', transferirFoco);
             document.removeEventListener('keydown', focarEndereco, true);
+            window.menuCompactoZen?.fechar(false);
             for (const botao of botoes.values()) botao.remove();
             document.querySelector('#browser')?.removeAttribute('data-zen-barra-integrada');
             document.querySelector('#browser')?.style.removeProperty('--zen-largura-lateral');

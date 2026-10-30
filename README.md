@@ -49,6 +49,20 @@ Abra o modal com **F2** e encontre seu próximo destino sem sair do teclado. Alt
 
 Na captura, o link colado já está selecionado em **Abrir endereço**, com o Google disponível como alternativa. Também funciona com domínios sem `https://`, como `exemplo.com/leituras`.
 
+## Um menu que cabe na lateral
+
+O botão do Vivaldi abre um menu compacto, alinhado à barra de abas, sem espalhar submenus por cima do site. Nova aba, nova janela, histórico, downloads, favoritos e configurações ficam à mão. Use as setas para escolher uma opção e Escape para fechar.
+
+![Menu compacto do Zenivaldi alinhado à lateral, sem cobrir o conteúdo do site](docs/images/menu-compacto.png)
+
+Para acessar as opções avançadas do navegador, escolha **Menu completo**. Essa opção abre o menu nativo do Vivaldi.
+
+## Rolagem que sai do caminho
+
+O instalador ativa as barras de rolagem nativas sobrepostas do Chromium: sem uma faixa reservada na página e ocultas quando não estão em uso. Também habilita a rolagem suave e as barras simples do Vivaldi.
+
+Essas configurações entram em vigor quando você abre o navegador depois da instalação. Os estilos de rolagem definidos pelos próprios sites continuam sendo respeitados. Ao remover o mod, as configurações anteriores de rolagem são restauradas.
+
 ## Instale sem programar
 
 Use **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar. As atualizações automáticas são ativadas na instalação. Você não precisa mexer nos arquivos de código.
@@ -58,6 +72,7 @@ Use **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar
 * Abas verticais com ícones alinhados e animação suave quando outras abas sobem após um fechamento.
 * Abas fixadas em cartões compactos no topo, com os ícones dos seus sites.
 * Menu e botão de mostrar ou ocultar o painel junto de voltar, avançar e recarregar na lateral.
+* Menu compacto para as opções do dia a dia, com acesso ao menu completo do Vivaldi.
 * Barra superior duplicada oculta quando o campo de endereço já está na lateral. Os controles da janela continuam disponíveis.
 * Pesquisa flutuante com o mesmo visual ao abrir e durante a digitação.
 * Sugestões que priorizam a página principal dos sites e reduzem endereços repetidos.
@@ -68,6 +83,7 @@ Use **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar
 * Barra lateral que recolhe mais rápido, respeitando campos de texto e popups abertos.
 * No modo de ocultação automática, as abas aparecem sobre o site sem deslocar seu conteúdo para baixo.
 * Atualizações automáticas e restauração dos scripts após atualizações do Vivaldi, quando o navegador estiver fechado.
+* Barras de rolagem sobrepostas e rolagem suave habilitadas por padrão.
 
 O Zenivaldi modifica a interface do Vivaldi. Ele não instala o Zen Browser e não troca o mecanismo que abre os sites.
 
@@ -162,7 +178,7 @@ O script de recolhimento ajusta os tempos internos de animação da barra. Esses
 * Scripts carregados: pasta `user_files\zenivaldi` dentro dos recursos da versão instalada do Vivaldi.
 * Atualizador e pacotes locais: `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador`.
 
-O instalador altera o documento da interface, a pasta de CSS e a opção experimental que permite CSS personalizado. Ele não importa nem apaga suas senhas, favoritos ou histórico. Os backups de preferências são locais e podem conter configurações pessoais. Não publique essa pasta.
+O instalador altera o documento da interface, a pasta de CSS e as opções de CSS personalizado e rolagem. Ele não importa nem apaga suas senhas, favoritos ou histórico. Os backups de preferências são locais e podem conter configurações pessoais. Não publique essa pasta.
 
 Se você já usa outro mod de CSS, o Zenivaldi passa a ser a pasta de CSS ativa. A configuração anterior é guardada para a remoção. A combinação com outros mods não foi validada.
 
