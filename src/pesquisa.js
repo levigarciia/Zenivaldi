@@ -43,6 +43,14 @@ function ordenarSugestoesZen(historico, consulta) {
     return [...unicos.values()].sort((a,b)=>b.pontos-a.pontos || a.url.localeCompare(b.url)).slice(0,8);
 }
 
+function listarAbasNormais(abas) {
+    return abas.filter(aba => {
+        if (!aba.url) return false;
+        try { return !JSON.parse(aba.vivExtData || '{}').panelId; }
+        catch { return true; }
+    }).map(aba => ({url:aba.url, titulo:aba.title || aba.url, abaId:aba.id}));
+}
+
 (() => {
     window.pesquisaZen?.encerrar();
     let lista = null;
@@ -101,7 +109,7 @@ function ordenarSugestoesZen(historico, consulta) {
             if (resultado.abaId !== undefined) {
                 await chrome.tabs.update(resultado.abaId, {active:true});
             } else {
-                await chrome.tabs.create({url:resultado.url, active:true});
+                await chrome.tabs.create({windowId:window.vivaldiWindowId, url:resultado.url, active:true});
             }
             limpar();
         } catch (erro) {
@@ -173,10 +181,8 @@ function ordenarSugestoesZen(historico, consulta) {
         let sugestoes;
         try {
             if (!consulta) {
-                const abas = await chrome.tabs.query({currentWindow:true});
-                sugestoes = abas.filter(aba => aba.url).map(aba => ({
-                    url:aba.url, titulo:aba.title || aba.url, abaId:aba.id
-                }));
+                const abas = await chrome.tabs.query({windowId:window.vivaldiWindowId});
+                sugestoes = listarAbasNormais(abas);
             } else {
                 const historico = await chrome.history.search({text:consulta, startTime:0, maxResults:500});
                 sugestoes = ordenarSugestoesZen(historico, consulta);

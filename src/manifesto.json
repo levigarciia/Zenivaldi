@@ -1,0 +1,21 @@
+{
+    "scripts": [
+        "animacoes-abas.js",
+        "autohide-barra.js",
+        "menu-compacto.js",
+        "menu-barra.js",
+        "popups.js",
+        "pesquisa.js",
+        "zeni-paginas.js",
+        "zeni-peek.js",
+        "zeni-player.js"
+    ],
+    "css": [
+        "zen.css",
+        "zeni-recursos.css"
+    ],
+    "recursos": [
+        "zeni-midia-inicio.js",
+        "zeni-pagina-inicio.js"
+    ]
+}

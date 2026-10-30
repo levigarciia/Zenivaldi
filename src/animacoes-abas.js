@@ -4,6 +4,7 @@
     const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)');
     const animacoes = new WeakMap();
     const emAndamento = new Set();
+    const fantasmas = new Set();
     let posicoes = new Map();
     let quadro = null;
     let encerrada = false;
@@ -19,6 +20,8 @@
                 elemento: aba,
                 topo: retangulo.top,
                 esquerda: retangulo.left,
+                largura: retangulo.width,
+                altura: retangulo.height,
                 fixada: posicao.classList.contains('is-pinned')
             });
         }
@@ -26,7 +29,7 @@
     }
 
     function animarDeslocamento(atual, anterior) {
-        if (atual.fixada || Math.abs(atual.esquerda - anterior.esquerda) > 1) return;
+        if (!anterior || atual.fixada || Math.abs(atual.esquerda - anterior.esquerda) > 1) return;
         const elemento = atual.elemento;
         const existente = animacoes.get(elemento);
         const transformacao = getComputedStyle(elemento).transform;
@@ -50,13 +53,45 @@
         });
     }
 
+    function animarSaida(anterior) {
+        if (anterior.esquerda + anterior.largura < 0 || anterior.esquerda > innerWidth
+            || anterior.topo + anterior.altura < 0 || anterior.topo > innerHeight) return;
+        const fantasma = document.createElement('div');
+        fantasma.className = 'tab-position zeni-aba-saindo';
+        fantasma.setAttribute('aria-hidden', 'true');
+        const copia = anterior.elemento.cloneNode(true);
+        for (const elemento of [copia, ...copia.querySelectorAll('*')]) {
+            for (const atributo of ['id', 'role', 'data-id', 'aria-selected']) elemento.removeAttribute(atributo);
+            elemento.setAttribute('tabindex', '-1');
+        }
+        fantasma.append(copia);
+        Object.assign(fantasma.style, {
+            position:'fixed', left:`${anterior.esquerda}px`, top:`${anterior.topo}px`,
+            width:`${anterior.largura}px`, height:`${anterior.altura}px`, pointerEvents:'none', zIndex:70
+        });
+        document.querySelector('#browser').append(fantasma);
+        fantasmas.add(fantasma);
+        const animacao = fantasma.animate([
+            {opacity:1, transform:'translateX(0) scale(1)'},
+            {opacity:0, transform:'translateX(-12px) scale(.97)'}
+        ], {duration:180, easing:'cubic-bezier(.2, .7, .25, 1)', fill:'forwards'});
+        animacao.id = 'zeni-saida-aba';
+        emAndamento.add(animacao);
+        animacao.finished.catch(() => {}).finally(() => {
+            fantasma.remove();
+            fantasmas.delete(fantasma);
+            emAndamento.delete(animacao);
+        });
+    }
+
     function atualizar() {
         quadro = null;
         if (encerrada) return;
         const atuais = listarAbas();
-        const houveRemocao = atuais.size < posicoes.size
-            && [...atuais.keys()].every(id => posicoes.has(id));
+        const removidas = [...posicoes].filter(([id]) => !atuais.has(id));
+        const houveRemocao = removidas.length > 0;
         if (houveRemocao && !movimentoReduzido.matches && !document.hidden) {
+            for (const [, anterior] of removidas) animarSaida(anterior);
             for (const [id, atual] of atuais) animarDeslocamento(atual, posicoes.get(id));
         }
         posicoes = atuais;
@@ -76,6 +111,7 @@
             observador.disconnect();
             if (quadro !== null) cancelAnimationFrame(quadro);
             for (const animacao of emAndamento) animacao.cancel();
+            for (const fantasma of fantasmas) fantasma.remove();
             posicoes.clear();
         }
     };

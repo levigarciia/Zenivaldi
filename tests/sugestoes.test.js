@@ -4,6 +4,17 @@ import { readFileSync } from 'node:fs';
 const codigo = readFileSync('src/pesquisa.js', 'utf8').split('(() => {')[0];
 const ordenar = new Function(`${codigo}; return ordenarSugestoesZen;`)();
 const obterEndereco = new Function(`${codigo}; return obterEnderecoDireto;`)();
+const listarAbas = new Function(`${codigo}; return listarAbasNormais;`)();
+
+test('a pesquisa não expõe abas temporárias de prévias e painéis', () => {
+    const abas = listarAbas([
+        {id:1, url:'https://exemplo.com/', title:'Site'},
+        {id:2, url:'https://exemplo.com/previa', vivExtData:JSON.stringify({panelId:'ZENI_PEEK_teste'})},
+        {id:3, url:'https://exemplo.com/painel', vivExtData:JSON.stringify({panelId:'painel-nativo'})},
+        {id:4, url:'https://exemplo.com/fixada', pinned:true}
+    ]);
+    expect(abas.map(aba => aba.abaId)).toEqual([1, 4]);
+});
 
 test('reconhece links completos e domínios sem depender do histórico', () => {
     for (const endereco of [

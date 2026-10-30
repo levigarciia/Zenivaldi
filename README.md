@@ -2,218 +2,174 @@
 
 <h1>Zenivaldi</h1>
 
-<p>Seu Vivaldi com mais espaço e um visual inspirado no Zen Browser.</p>
+<p>A calmer Vivaldi, inspired by Zen Browser.</p>
+<p>Pinned sites. Floating search. Page previews. Playback within reach.</p>
 
-<p>Seus sites favoritos fixados. Abas na lateral. Pesquisa flutuante.</p>
-
-<p>
-<a href="https://github.com/levigarciia/Zenivaldi/releases/latest"><strong>Baixar para Windows</strong></a>
- · <a href="#como-instalar">Como instalar</a>
- · <a href="#como-remover">Como remover</a>
- · <a href="https://github.com/levigarciia/Zenivaldi/issues">Relatar um problema</a>
-</p>
+<p><a href="docs/README.pt-BR.md">Português brasileiro</a>
+ · <a href="#install-on-windows">Install</a>
+ · <a href="#search-without-friction">Search</a>
+ · <a href="CONTRIBUTING.md">Contribute</a></p>
 
 </div>
 
-![Interface do Zenivaldi com abas laterais e tema escuro](docs/images/visao-geral.png)
+**Development preview:** the current source includes automatic layout setup, ZeniPeek and ZeniPlayer. These changes
+are not in the latest packaged release yet. The [latest published download](https://github.com/levigarciia/Zenivaldi/releases/latest)
+is the stable version and does not include all the features shown here.
 
-<p align="center"><em>Captura real do Vivaldi em perfil de demonstração, com página e dados fictícios.</em></p>
+![Zenivaldi with pinned sites and a clean sidebar](docs/images/visao-geral.png)
 
-| Seus sites sempre à mão | Pesquisa mais clara | Instalação simples |
+<p align="center"><em>Real Vivaldi captures in presentation mode, with fictional content and no personal data.</em></p>
+
+| Keep sites close | Search without friction | Explore without losing your place |
 | :--- | :--- | :--- |
-| Abas fixadas em pequenos cartões com ícones, acima das outras abas. | Endereços simples primeiro e Google sempre disponível. | Baixe, extraia e execute. Sem ferramentas de programação. |
+| Pinned tabs become compact cards with site icons. | Open tabs, history, direct links and Google in one modal. | ZeniPeek previews a page while your original tab stays open. |
 
-## Seus favoritos viram abas fixadas
+## Your everyday sites, pinned
 
-YouTube, WhatsApp, GitHub ou qualquer site que você usa todo dia: fixe a aba e deixe seu ícone no topo da lateral. Os sites fixados ficam em pequenos cartões, separados das abas comuns, sem uma lista de títulos ocupando espaço.
+Keep YouTube, WhatsApp, GitHub or any site you use daily at the top of the sidebar. Pinned tabs appear as small cards,
+separate from regular tabs, without a long list of titles taking up space.
 
-<p align="center">
-<img src="docs/images/abas-fixadas.png" alt="Abas fixadas do YouTube, X e WhatsApp em cartões com ícones, acima das abas comuns">
-</p>
+<p align="center"><img src="docs/images/abas-fixadas.png" alt="Pinned YouTube, X and WhatsApp tabs above regular tabs"></p>
 
-**Para fixar:** abra o site, clique com o botão direito na aba e escolha **Fixar aba**. Para desfazer, use **Desafixar aba** no mesmo menu. Você também pode arrastar as abas fixadas para mudar a ordem.
+Right click a tab and choose **Pin Tab**. Use **Unpin Tab** to undo it, or drag pinned tabs to change their order.
+These are Vivaldi's own pinned tabs, styled by Zenivaldi.
 
-Essa função usa as abas fixadas do próprio Vivaldi. O Zenivaldi cuida do visual, sem criar atalhos extras nem depender de uma conta do mod.
+## Search without friction
 
-## Pesquise sem atrito
+Press **Ctrl+T** or **F2** to find your next destination without leaving the keyboard.
 
-Abra o modal com **F2** e encontre seu próximo destino sem sair do teclado. Alterne entre as abas abertas, encontre sites no histórico, cole um link ou faça uma pesquisa no Google, tudo no mesmo lugar.
+* **Go to the site:** suggestions prioritize home pages and simpler paths, with fewer repeated addresses.
+* **Paste and open:** links and domains are ready to open with Enter, even if you have never visited them.
+* **Google stays available:** the search option remains at the top, even when there are matching sites.
+* **Pick up where you left off:** with no text, the modal shows the current window's open tabs.
+* **Keep moving:** choose with the arrow keys and open with Enter. The modal closes when you confirm a destination.
 
-* **Encontre o site, não uma lista de posts:** as sugestões priorizam a página principal e os caminhos mais simples, sem repetir endereços que só mudam no fragmento.
-* **Cole e abra:** links e domínios ficam prontos para abrir com Enter, mesmo que você nunca tenha visitado o site.
-* **Google sempre à mão:** a opção de pesquisar fica fixa no topo, inclusive quando há sugestões de sites.
-* **Continue de onde parou:** sem texto, o modal mostra as abas da janela atual. Escolher uma delas ativa a aba existente.
-* **Tudo pelo teclado:** use as setas para escolher e Enter para abrir. O modal fecha ao confirmar o destino e mantém o mesmo visual ao ser aberto novamente.
+![Floating search with a direct link selected and Google available](docs/images/abrir-link.png)
 
-![Pesquisa flutuante com o link selecionado para abrir e o Google como alternativa](docs/images/abrir-link.png)
+You can enter a full URL or a domain such as `example.com/reading`. Selecting an open tab activates it rather than
+opening another copy.
 
-Na captura, o link colado já está selecionado em **Abrir endereço**, com o Google disponível como alternativa. Também funciona com domínios sem `https://`, como `exemplo.com/leituras`.
+## ZeniPeek
 
-## Um menu que cabe na lateral
+Hold **Alt** while clicking a link to open a large interactive preview over your current page. The three round buttons
+on its right close the preview, open its current address as a regular tab, or tile it beside your original page.
 
-O botão do Vivaldi abre um menu compacto, alinhado à barra de abas, sem espalhar submenus por cima do site. Nova aba, nova janela, histórico, downloads, favoritos e configurações ficam à mão. Use as setas para escolher uma opção e Escape para fechar.
+![ZeniPeek displaying a real demonstration page](docs/images/zeni-peek.png)
 
-![Menu compacto do Zenivaldi alinhado à lateral, sem cobrir o conteúdo do site](docs/images/menu-compacto.png)
+This is a live browser page, not a screenshot. Close it with Escape, the close button or a click outside the preview.
+The temporary preview tab is removed when you close it. Your original tab remains available.
 
-Para acessar as opções avançadas do navegador, escolha **Menu completo**. Essa opção abre o menu nativo do Vivaldi.
+One preview is shown per window. The current implementation handles ordinary HTTP and HTTPS links; internal browser
+pages are not injected. Opening a preview as a regular tab loads its current URL as a normal page.
 
-## Rolagem que sai do caminho
+## ZeniPlayer
 
-O instalador ativa as barras de rolagem nativas sobrepostas do Chromium: sem uma faixa reservada na página e ocultas quando não estão em uso. Também habilita a rolagem suave e as barras simples do Vivaldi.
+When a compatible site plays audio or video, ZeniPlayer appears as a compact row at the bottom of the sidebar, with
+the source site's icon and playback controls. Hover over it or move keyboard focus into it to reveal the title,
+timeline and extra actions. Pause, resume, seek, mute and adjust volume without switching tabs.
 
-Essas configurações entram em vigor quando você abre o navegador depois da instalação. Os estilos de rolagem definidos pelos próprios sites continuam sendo respeitados. Ao remover o mod, as configurações anteriores de rolagem são restauradas.
+![ZeniPlayer controlling local demonstration audio](docs/images/zeni-player.png)
 
-## Instale sem programar
+Choose between available media sources. Previous and next controls become available when the site registers those
+actions. Picture in picture depends on video support and playback permissions. Hiding the controls does not stop audio.
+While a video is in picture in picture, the sidebar player stays hidden. It returns when that floating window closes.
 
-Use **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar. As atualizações automáticas são ativadas na instalação. Você não precisa mexer nos arquivos de código.
+![ZeniPlayer in its default compact state](docs/images/zeni-player-minimizado.png)
 
-## O que muda
+The player controls HTML audio and video elements. Some sites use custom media systems or restrict picture in picture;
+you can always open the source tab from the track title.
 
-* Abas verticais com ícones alinhados e animação suave quando outras abas sobem após um fechamento.
-* Abas fixadas em cartões compactos no topo, com os ícones dos seus sites.
-* Menu e botão de mostrar ou ocultar o painel junto de voltar, avançar e recarregar na lateral.
-* Menu compacto para as opções do dia a dia, com acesso ao menu completo do Vivaldi.
-* Barra superior duplicada oculta quando o campo de endereço já está na lateral. Os controles da janela continuam disponíveis.
-* Pesquisa flutuante com o mesmo visual ao abrir e durante a digitação.
-* Sugestões que priorizam a página principal dos sites e reduzem endereços repetidos.
-* Opção de pesquisar no Google sempre visível no topo da lista.
-* Lista sem barra de rolagem visível. A roda do mouse e as setas continuam funcionando.
-* Fechamento do modal ao abrir um resultado com clique ou Enter.
-* Ajuste de posição dos popups para evitar que fiquem cortados pela janela.
-* Barra lateral que recolhe mais rápido, respeitando campos de texto e popups abertos.
-* No modo de ocultação automática, as abas aparecem sobre o site sem deslocar seu conteúdo para baixo.
-* Atualizações automáticas e restauração dos scripts após atualizações do Vivaldi, quando o navegador estiver fechado.
-* Barras de rolagem sobrepostas e rolagem suave habilitadas por padrão.
+## A menu that fits the sidebar
 
-O Zenivaldi modifica a interface do Vivaldi. Ele não instala o Zen Browser e não troca o mecanismo que abre os sites.
+The Vivaldi button opens a compact menu for new tabs, windows, history, downloads, bookmarks and settings. It stays within
+the sidebar rather than spreading submenus over the site. Use the arrows to navigate and Escape to close it.
 
-## Antes de instalar
+![Compact menu aligned with the sidebar](docs/images/menu-compacto.png)
 
-* Windows 10 ou 11 com Vivaldi instalado para o seu usuário, no local padrão.
-* Abra o Vivaldi pelo menos uma vez antes de instalar.
-* Feche todas as janelas do Vivaldi. O instalador avisa se ele ainda estiver aberto.
+Choose **Full menu** for Vivaldi's native advanced options.
 
-A interface foi validada no Vivaldi **8.2.4133.96**. Como o mod depende de partes internas do navegador, outras versões podem precisar de ajustes.
+## Scrolling that stays out of the way
 
-O instalador não precisa de Bun, Node.js, Git ou editor de código. Ele usa o PowerShell que já vem no Windows.
+The installer enables Chromium's native overlay scrollbars, smooth scrolling and Vivaldi's simple scrollbars. The page
+does not need a reserved scrollbar strip. Site defined scrollbar styles continue to be respected.
 
-## Como instalar
+The sidebar opens with a softer transition. Closing a tab animates its exit, including the last tab in the list; tabs
+below a removed tab also move into place. Reduced motion preferences are respected.
 
-1. Abra a [página de downloads](https://github.com/levigarciia/Zenivaldi/releases/latest).
-2. Em **Assets**, baixe **Zenivaldi.zip**.
-3. Clique com o botão direito no arquivo baixado e escolha **Extrair Tudo**.
-4. Abra a pasta extraída. Não execute o instalador de dentro do ZIP.
-5. Feche o Vivaldi e dê dois cliques em **Instalar.cmd**.
-6. Aguarde a mensagem de instalação concluída e abra o Vivaldi novamente.
+## Install on Windows
 
-Pronto. O instalador ativa o carregamento do CSS e dos scripts, cria um backup antes das alterações e registra a verificação automática para seu usuário do Windows.
+You need Windows 10 or 11 and Vivaldi installed for your user in the default location. Open Vivaldi once before installing,
+then close all its windows. No Bun, Node.js, Git or programming knowledge is required.
 
-Se o Windows mostrar uma confirmação para executar o arquivo, confira se ele veio deste repositório. Não é necessário desativar o antivírus nem mudar configurações permanentes de segurança.
+1. Download or obtain the Zenivaldi package you want to install.
+2. Right click the ZIP and choose **Extract All**. Do not run the installer from inside the ZIP.
+3. Close Vivaldi and double click **Instalar.cmd** in the extracted folder.
+4. Wait for the success message, then open Vivaldi again.
 
-## Como deixar a organização parecida com o Zen
+The installer configures the left sidebar, an initial width of 265 pixels, automatic hiding, sidebar navigation and the
+address field. It assigns **Ctrl+T** to floating search and keeps **F2** available. There is no toolbar dragging or manual
+shortcut editing to do. Backups are created before changes, and unrelated shortcuts are preserved.
+The extensions button uses Vivaldi's native dropdown, keeping installed extensions accessible from the sidebar.
 
-O instalador cuida do visual. A posição das barras é uma configuração do próprio Vivaldi:
+The native interface has been checked with **Vivaldi 8.2.4133.96**. Browser updates may change internal UI contracts.
 
-1. Abra **Configurações > Abas** e escolha a posição da barra de abas **Esquerda**.
-2. Se quiser a barra recolhendo automaticamente, procure **Ocultar automaticamente** nas configurações e ative para a barra de abas.
-3. Para mover o campo de endereço para a lateral, use **Editar > Personalizar barra de ferramentas** no menu de contexto de uma barra. Arraste o campo de endereço para a parte superior da barra de abas e finalize a edição.
-4. Abra a pesquisa flutuante com **F2**, chamada **Comandos rápidos** no Vivaldi.
-5. Se preferir usar **Ctrl+T**, abra **Configurações > Teclado**, remova esse atalho de **Nova aba** e atribua a **Comandos rápidos**.
+## Updates
 
-Os nomes e a localização dessas opções podem variar conforme a versão e o idioma do Vivaldi. O instalador não reorganiza suas barras nem substitui seus atalhos.
+The installer registers a Windows task for the current user. It checks stable releases from this repository every hour
+while you are signed in. Updates are applied only when Vivaldi is closed, after verifying the ZIP's SHA256 digest.
 
-Com o campo de endereço na lateral, a barra superior duplicada desaparece automaticamente. Os botões de menu e de painel ficam na primeira linha da lateral, junto da navegação. **Ctrl+L** continua selecionando o endereço, agora na lateral. Se os controles necessários não forem encontrados, o mod mantém a barra original visível.
+If a browser update removes the UI scripts, the updater can repair them from its local cache, including while offline.
+The development build is kept separate from the stable version; developers should use the installation option described
+in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Como usar a pesquisa
+* **Atualizar.cmd:** check now, with Vivaldi closed.
+* **DesativarAtualizacoes.cmd:** disable updates while keeping the mod installed.
+* **Instalar.cmd:** install, reapply or enable automatic updates again.
 
-* Sem texto: mostra as abas da janela atual. Escolher uma delas ativa a aba existente.
-* Com texto: busca no histórico local e prioriza endereços mais simples.
-* **Pesquisar com Google**: fica fixo no topo, mesmo quando há sugestões de sites.
-* Ao colar um link ou digitar um domínio, **Abrir endereço** aparece e começa selecionado. Enter abre o link diretamente, mesmo que ele nunca tenha sido visitado. A pesquisa no Google continua disponível.
-* **Setas**: mudam a opção selecionada. **Enter**: abre a seleção. Você também pode clicar.
-* Havendo sugestões de sites, a primeira delas começa selecionada. Para pesquisar no Google, clique na primeira linha ou use a seta para cima até selecioná la.
+Existing users need to run an installer with update support once. The task does not keep a Zenivaldi program running
+continuously. If Windows refuses task registration, the installer reports it and manual reapplication remains available.
 
-A opção do Google usa explicitamente o Google, mesmo que outro buscador esteja configurado no navegador. As sugestões vêm do histórico local. Não há um servidor do Zenivaldi recebendo o que você digita; a pesquisa escolhida é enviada ao Google quando você a abre.
+## Remove
 
-## Atualizações sem baixar tudo de novo
+Close Vivaldi and double click **Remover.cmd**. The installer disables its scripts, removes the update task and restores
+the saved layout, affected shortcuts, CSS directory and scrolling preferences. Unrelated shortcuts stay as they are.
+Backups are kept.
 
-A partir da versão **0.1.3**, o instalador ativa uma tarefa do Windows que verifica atualizações **a cada hora**, enquanto seu usuário está conectado. Não é necessário manter a pasta baixada aberta, nem deixar um programa do Zenivaldi rodando continuamente.
+The sidebar script also changes Vivaldi's internal animation timing values. Those timings can remain after removal and
+can be adjusted in Vivaldi settings.
 
-* Busca a versão estável mais recente nas releases deste repositório.
-* Confere o SHA256 do ZIP informado pelo GitHub antes de usar o pacote.
-* Só aplica mudanças com o Vivaldi fechado. Se ele estiver aberto, tenta de novo na próxima verificação, sem encerrar suas abas.
-* Se uma atualização do Vivaldi remover os scripts, reaplica a cópia local do mod, inclusive sem internet.
-* Mantém backups das preferências e dos arquivos de carregamento antes da instalação.
+## Files and privacy
 
-**Já usava uma versão anterior?** Baixe a versão atual e execute **Instalar.cmd** uma vez, com o Vivaldi fechado. As versões antigas não tinham um atualizador capaz de ativar esse recurso sozinhas.
+| Location | Contents |
+| :--- | :--- |
+| `%LOCALAPPDATA%\Vivaldi\Zenivaldi` | Installed styles and restoration state. |
+| `%LOCALAPPDATA%\Vivaldi\ZenivaldiBackups` | Local backups. Do not publish them. |
+| `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador` | Updater, cached packages and the latest result. |
 
-**Quer verificar agora?** Feche o Vivaldi e execute **Atualizar.cmd**. Para desativar apenas as atualizações, use **DesativarAtualizacoes.cmd**. O mod continua instalado. Execute **Instalar.cmd** novamente para reativar.
+The installer changes UI loading, layout, shortcuts and scrolling options. It does not import or delete passwords,
+bookmarks or history. ZeniPeek and ZeniPlayer use page scripts to detect links and media and communicate with the local
+browser UI. No Zenivaldi server receives page contents or playback metadata. Pages and artwork still make their normal
+network requests; choosing Google search sends that query to Google.
 
-O resultado da última tentativa fica em `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador\ultimo-resultado.txt`. Se o Windows impedir o agendamento, o instalador avisa; nesse caso, você ainda pode reaplicar o mod manualmente. Instalações em pastas protegidas podem não permitir atualizações com as permissões normais do usuário.
+If you already use another CSS mod directory, Zenivaldi becomes the active directory and saves the previous value for
+removal. Combining independent mods has not been validated.
 
-## Atualizou o Vivaldi e o visual sumiu?
+## Need help?
 
-Isso pode acontecer porque uma atualização substitui os arquivos que carregam os scripts. O CSS pode continuar aparecendo enquanto a lista de pesquisa volta ao visual original. Com a atualização automática ativada, feche o navegador e aguarde a próxima verificação ou execute **Atualizar.cmd**. Para reaplicar manualmente:
+* **Vivaldi is still open:** close every window and check Task Manager for background processes.
+* **Installation not found:** portable installations, protected folders and additional profiles need explicit paths.
+  See [CONTRIBUTING.md](CONTRIBUTING.md).
+* **The interface changed after an update:** close Vivaldi and run **Atualizar.cmd** or **Instalar.cmd** again.
+* **An animation is missing:** check the operating system's reduced motion preference.
+* **Still stuck?** [Open an issue](https://github.com/levigarciia/Zenivaldi/issues/new) with your Vivaldi and Windows versions
+  and a screenshot without personal information.
 
-1. Feche o Vivaldi.
-2. Abra a pasta do Zenivaldi e execute **Instalar.cmd** novamente.
-3. Abra o navegador.
+## Contribute and credits
 
-Não é preciso desinstalar antes. Se uma versão nova continuar com problema, veja se há uma [versão atualizada do mod](https://github.com/levigarciia/Zenivaldi/releases).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development and native validation steps.
 
-## Como remover
+ZeniPeek and ZeniPlayer are focused adaptations of the concepts and Vivaldi integration techniques in
+[Awesome Vivaldi](https://github.com/PaRr0tBoY/Awesome-Vivaldi). Credits are preserved in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), with the GPL version 3 license in [LICENSE](LICENSE).
 
-Feche o Vivaldi e dê dois cliques em **Remover.cmd** na pasta extraída.
-
-Isso desativa os scripts deste instalador e restaura a configuração anterior de carregamento do CSS. Os backups são mantidos. As posições das barras e os atalhos que você ajustou manualmente continuam como estavam.
-
-A tarefa de atualização também é desativada, para que o mod não volte a ser instalado depois da remoção.
-
-O script de recolhimento ajusta os tempos internos de animação da barra. Esses valores podem permanecer após a remoção, e podem ser ajustados nas configurações do Vivaldi.
-
-## Onde os arquivos ficam
-
-* Mod instalado: `%LOCALAPPDATA%\Vivaldi\Zenivaldi`.
-* Backups: `%LOCALAPPDATA%\Vivaldi\ZenivaldiBackups`.
-* Scripts carregados: pasta `user_files\zenivaldi` dentro dos recursos da versão instalada do Vivaldi.
-* Atualizador e pacotes locais: `%LOCALAPPDATA%\Vivaldi\ZenivaldiAtualizador`.
-
-O instalador altera o documento da interface, a pasta de CSS e as opções de CSS personalizado e rolagem. Ele não importa nem apaga suas senhas, favoritos ou histórico. Os backups de preferências são locais e podem conter configurações pessoais. Não publique essa pasta.
-
-Se você já usa outro mod de CSS, o Zenivaldi passa a ser a pasta de CSS ativa. A configuração anterior é guardada para a remoção. A combinação com outros mods não foi validada.
-
-## Problemas comuns
-
-**O instalador diz que o Vivaldi está aberto:** feche todas as janelas. Se continuar, verifique no Gerenciador de Tarefas se há processos do Vivaldi em segundo plano.
-
-**O Vivaldi não foi encontrado:** a instalação por dois cliques atende à pasta padrão do usuário. Instalações portáteis, para todos os usuários e perfis adicionais exigem informar os caminhos manualmente. Consulte a seção técnica abaixo.
-
-**A animação não aparece:** o mod respeita a preferência do Windows por reduzir movimentos. A animação de fechamento se aplica ao deslocamento das abas não fixadas na lateral esquerda.
-
-**Algo ficou fora do lugar:** confirme a posição das abas à esquerda, reaplique o instalador após uma atualização e confira a versão validada acima.
-
-**Ainda não funcionou:** [abra um relato de problema](https://github.com/levigarciia/Zenivaldi/issues/new) com a versão do Vivaldi, sua versão do Windows e uma imagem sem dados pessoais.
-
-## Para quem desenvolve
-
-Os arquivos do mod estão em `src`. O instalador está em `scripts/Configurar.ps1` e funciona no Windows PowerShell 5.1.
-
-Com [Bun](https://bun.sh) instalado, execute:
-
-```powershell
-bun test
-```
-
-Os testes criam uma instalação simulada e verificam instalação, reaplicação, remoção e atualização. Eles simulam o download de um ZIP válido e de um pacote com integridade incorreta, sem acessar a rede nem agendar tarefas. Não usam seu perfil real. O agendamento e a interface nativa foram validados separadamente; não fazem parte da suíte automática.
-
-Para uma instalação em outro caminho que mantenha as pastas `Application` e `User Data`:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Configurar.ps1 -RaizVivaldi 'D:\Aplicativos\Vivaldi' -Perfil 'Default'
-```
-
-Para remover, use os mesmos argumentos e acrescente `-Remover`. O perfil padrão é `Default`. O instalador atende a um perfil por instalação e não procura automaticamente pastas de dados personalizadas. Instalações em pastas protegidas podem exigir permissões adicionais.
-
-## Créditos
-
-Projeto independente, inspirado no Zen Browser e feito para o Vivaldi. Não é um produto oficial de nenhum dos dois navegadores.
+Zenivaldi is an independent project. It is not an official product of Vivaldi or Zen Browser.

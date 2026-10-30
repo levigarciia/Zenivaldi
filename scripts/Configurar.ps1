@@ -55,12 +55,19 @@ try {
     $pastaMod = Join-Path $raiz 'Zenivaldi'
     $estadoMod = Join-Path $pastaMod 'estado.json'
     $origem = Join-Path (Split-Path $PSScriptRoot -Parent) 'src'
-    $scripts = @('animacoes-abas.js', 'autohide-barra.js', 'menu-compacto.js', 'menu-barra.js', 'popups.js', 'pesquisa.js')
+    $manifesto = [IO.File]::ReadAllText((Join-Path $origem 'manifesto.json')) | ConvertFrom-Json
+    $scripts = @($manifesto.scripts)
+    $recursosPagina = @($manifesto.recursos)
+    $css = @($manifesto.css)
+    foreach ($nome in @($scripts) + @($css) + $recursosPagina) {
+        if ($nome -notmatch '^[a-z0-9-]+\.(js|css)$') { throw 'O manifesto contém um nome de arquivo inválido.' }
+    }
+    $catalogo = [IO.File]::ReadAllText((Join-Path $recursos 'prefs_definitions.json')) | ConvertFrom-Json
     if ($Remover -and -not (Test-Path -LiteralPath $estadoMod)) {
         throw 'Não há uma instalação do Zenivaldi feita por este instalador.'
     }
     if (-not $Remover) {
-        foreach ($nome in @('zen.css') + $scripts) {
+        foreach ($nome in $css + $scripts + $recursosPagina) {
             if (-not (Test-Path -LiteralPath (Join-Path $origem $nome))) { throw "Arquivo do mod ausente: $nome" }
         }
     }
@@ -80,6 +87,8 @@ try {
         }
     }
     if ($anterior.perfil -ne $Perfil) { throw 'Este instalador já foi usado em outro perfil desta instalação.' }
+    . (Join-Path $PSScriptRoot 'Layout.ps1')
+    Configurar-Layout $prefs $anterior $catalogo ([bool]$Remover)
     if (-not $Remover -and -not $anterior.PSObject.Properties['rolagem']) {
         Definir-Valor $anterior 'rolagem' ([pscustomobject]@{
             experimentos = @($browser.enabled_labs_experiments | Where-Object {
@@ -109,7 +118,9 @@ try {
         }
     } else {
         Gravar-Texto $estadoMod ($anterior | ConvertTo-Json -Depth 10)
-        Copy-Item -LiteralPath (Join-Path $origem 'zen.css') -Destination (Join-Path $pastaMod 'zen.css') -Force
+        foreach ($nome in $css) {
+            Copy-Item -LiteralPath (Join-Path $origem $nome) -Destination (Join-Path $pastaMod $nome) -Force
+        }
         Definir-Valor $aparencia 'css_ui_mods_directory' $pastaMod
         Definir-Valor $browser 'enabled_labs_experiments' @(
             $experimentos + 'vivaldi-css-mods@1' + 'overlay-scrollbars@1' + 'smooth-scrolling@1'
@@ -126,6 +137,11 @@ try {
             New-Item -ItemType Directory -Path $destino -Force | Out-Null
             Copy-Item -LiteralPath (Join-Path $origem $nome) -Destination (Join-Path $destino $nome) -Force
             $html = $html.Replace('</head>', "  <script src=`"$referencia`" defer></script>`n</head>")
+        }
+    }
+    if (-not $Remover) {
+        foreach ($nome in $recursosPagina) {
+            Copy-Item -LiteralPath (Join-Path $origem $nome) -Destination (Join-Path $destino $nome) -Force
         }
     }
     Gravar-Texto $preferencias ($prefs | ConvertTo-Json -Depth 100 -Compress)

@@ -125,11 +125,11 @@
     margin: 6px 3px 0 0;
     z-index: 11;
     opacity: 0;
-    pointer-events: none;
+    pointer-events: auto;
     transition: opacity 120ms ease;
 }
 
-#browser.tabs-left .toolbar-tabbar-before:has(.UrlBar-AddressField:hover)
+#browser.tabs-left .toolbar-tabbar-before:has(.UrlBar-AddressField:is(:hover, :focus-within))
     > :is(.toolbar-extensions, .toolbar-command),
 #browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command):hover,
 #browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command):focus-within {
@@ -142,6 +142,21 @@
     > :is(.toolbar-extensions, .toolbar-command):focus-within
 ) .UrlBar-AddressField {
     padding-right: 34px;
+}
+
+#browser.tabs-left .toolbar-tabbar-before:has(.UrlBar-AddressField:focus-within) .UrlBar-AddressField {
+    padding-right: 34px;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > .toolbar-extensions {
+    overflow: visible;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > .toolbar-extensions:has(
+    .button-popup, .extension-popup, [aria-expanded="true"]
+) {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 #browser.tabs-left .toolbar-tabbar-before:has(> .toolbar-extensions:not(:empty))

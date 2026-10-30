@@ -17,6 +17,7 @@ function preparar() {
     mkdirSync(recursos, {recursive:true});
     mkdirSync(join(raiz, 'User Data', 'Default'), {recursive:true});
     writeFileSync(join(recursos, 'window.html'), '<html><head>\n</head><body></body></html>');
+    writeFileSync(join(recursos, 'prefs_definitions.json'), readFileSync('tests/fixtures/catalogo.json'));
     writeFileSync(join(raiz, 'User Data', 'Default', 'Preferences'), '{}');
     writeFileSync(join(raiz, 'User Data', 'Local State'), '{}');
     const pasta = join(raiz, 'ZenivaldiAtualizador');

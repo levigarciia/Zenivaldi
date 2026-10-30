@@ -6,8 +6,8 @@
     const ajustes = {
         auto_hide_close_delay: 180,
         auto_hide_inactive_delay: 300,
-        auto_hide_animation_speed: 100,
-        auto_hide_closing_animation_speed: 140
+        auto_hide_animation_speed: 260,
+        auto_hide_closing_animation_speed: 200
     };
 
     async function configurar() {

@@ -1,0 +1,11 @@
+{
+    "vivaldi": {
+        "actions": {
+            "default": [{
+                "COMMAND_NEW_TAB": {"shortcuts": ["ctrl+t"]},
+                "COMMAND_SHOW_QUICK_COMMANDS": {"shortcuts": ["f2"]},
+                "COMMAND_OTHER": {"shortcuts": ["ctrl+1"]}
+            }]
+        }
+    }
+}
