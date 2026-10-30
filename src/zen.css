@@ -659,12 +659,12 @@
     overflow: visible !important;
 }
 
-#browser[data-zen-barra-integrada] .toolbar-mainbar > * {
+#browser[data-zen-barra-integrada] .mainbar > .toolbar-mainbar > * {
     visibility: hidden;
     pointer-events: none;
 }
 
-#browser[data-zen-barra-integrada] .toolbar-mainbar > button.vivaldi {
+#browser[data-zen-barra-integrada] .mainbar > .toolbar-mainbar > button.vivaldi {
     position: fixed !important;
     left: var(--zen-menu-esquerda, 13px);
     top: var(--zen-menu-topo, 13px);
