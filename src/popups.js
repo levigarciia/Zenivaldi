@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
     window.popupsZen?.encerrar();
     let quadro = null;
     const ajustados = new Set();
@@ -25,8 +25,18 @@
         attributeFilter:['style', 'class']});
     window.addEventListener('resize', agendar);
     agendar();
+    const medirOriginal = Element.prototype.getBoundingClientRect;
+    const deslocamentoDoDialogoDeSenha = 70;
+    function medir() {
+        const pagina = document.querySelector('#browser.tabs-left #webview-container');
+        if (!pagina || !this.closest?.('.password-icon')) return medirOriginal.call(this);
+        const area = medirOriginal.call(pagina);
+        return new DOMRect(area.left + area.width / 2 + deslocamentoDoDialogoDeSenha, area.top, 0, 0);
+    }
+    Element.prototype.getBoundingClientRect = medir;
     window.popupsZen = {
         encerrar() {
+            Element.prototype.getBoundingClientRect = medirOriginal;
             observador.disconnect();
             window.removeEventListener('resize', agendar);
             if (quadro !== null) cancelAnimationFrame(quadro);
