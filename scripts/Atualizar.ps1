@@ -13,12 +13,22 @@ function Registrar-Resultado([string]$Mensagem) {
     Write-Output $Mensagem
 }
 
+function Ocultar-JanelaDaTarefa([string]$NomeTarefa) {
+    $tarefa = Get-ScheduledTask -TaskName $NomeTarefa -ErrorAction SilentlyContinue
+    if (-not $tarefa) { return }
+    $acao = $tarefa.Actions[0]
+    if ($acao.Execute -ne 'powershell.exe') { return }
+    $novaAcao = New-ScheduledTaskAction -Execute 'conhost.exe' -Argument "--headless powershell.exe $($acao.Arguments)"
+    Set-ScheduledTask -TaskName $NomeTarefa -Action $novaAcao | Out-Null
+}
+
 try {
     $config = [IO.File]::ReadAllText($Configuracao) | ConvertFrom-Json
     if (-not $config.habilitada) { exit 0 }
     $nomeBloqueio = 'Local\' + $config.tarefa
     $bloqueio = New-Object Threading.Mutex($false, $nomeBloqueio)
     if (-not $bloqueio.WaitOne(0)) { $bloqueio.Dispose(); $bloqueio = $null; exit 0 }
+    try { Ocultar-JanelaDaTarefa $config.tarefa } catch { }
     $raiz = [IO.Path]::GetFullPath($config.raiz).TrimEnd('\')
     $abertos = Get-Process vivaldi -ErrorAction SilentlyContinue | Where-Object {
         $_.Path -and $_.Path.StartsWith($raiz + '\', [StringComparison]::OrdinalIgnoreCase)

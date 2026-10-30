@@ -25,9 +25,9 @@ function Registrar-Atualizacao([string]$Raiz, [string]$Perfil, [string]$Pacote) 
         tarefa = $nomeTarefa; habilitada = $true
     }
     [IO.File]::WriteAllText($arquivo, ($configuracao | ConvertTo-Json), (New-Object Text.UTF8Encoding $false))
-    $argumentos = '-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "{0}" -Configuracao "{1}"' -f (
-        Join-Path $pasta 'Atualizar.ps1'), $arquivo
-    $acao = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument $argumentos
+    $argumentos = '--headless powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass ' +
+        ('-File "{0}" -Configuracao "{1}"' -f (Join-Path $pasta 'Atualizar.ps1'), $arquivo)
+    $acao = New-ScheduledTaskAction -Execute 'conhost.exe' -Argument $argumentos
     $gatilho = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(2) -RepetitionInterval (New-TimeSpan -Hours 1)
     $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew `
         -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
