@@ -634,8 +634,8 @@
     fill: currentColor;
 }
 
-#browser.zen-barra-integrada #main > .mainbar,
-#browser.zen-barra-integrada .mainbar > .toolbar-mainbar {
+#browser[data-zen-barra-integrada] #main > .mainbar,
+#browser[data-zen-barra-integrada] .mainbar > .toolbar-mainbar {
     height: 0 !important;
     min-height: 0 !important;
     padding: 0 !important;
@@ -643,12 +643,12 @@
     overflow: visible !important;
 }
 
-#browser.zen-barra-integrada .toolbar-mainbar > * {
+#browser[data-zen-barra-integrada] .toolbar-mainbar > * {
     visibility: hidden;
     pointer-events: none;
 }
 
-#browser.zen-barra-integrada .toolbar-mainbar > button.vivaldi {
+#browser[data-zen-barra-integrada] .toolbar-mainbar > button.vivaldi {
     position: fixed !important;
     left: var(--zen-menu-esquerda, 13px);
     top: var(--zen-menu-topo, 13px);
@@ -658,7 +658,7 @@
     scale: 1 !important;
 }
 
-#browser.zen-barra-integrada .mainbar .window-buttongroup {
+#browser[data-zen-barra-integrada] .mainbar .window-buttongroup {
     position: fixed;
     top: 0;
     right: 0;
@@ -668,20 +668,20 @@
     pointer-events: auto;
 }
 
-#browser.zen-barra-integrada .mainbar .window-buttongroup button {
+#browser[data-zen-barra-integrada] .mainbar .window-buttongroup button {
     height: 28px;
     width: 36px;
 }
 
-#browser.zen-barra-integrada #webview-container {
+#browser[data-zen-barra-integrada]:not(.auto-hide) #webview-container {
     margin-top: 32px;
 }
 
-#browser.zen-barra-integrada #panels-container {
+#browser[data-zen-barra-integrada] #panels-container {
     padding-top: 32px;
 }
 
-#browser.zen-barra-integrada::before {
+#browser[data-zen-barra-integrada]::before {
     content: '';
     position: fixed;
     top: 0;

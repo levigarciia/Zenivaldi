@@ -32,6 +32,7 @@ Os scripts de interface que deram origem a esta distribuição foram testados em
 * Alternar o painel pelo botão novo e focar o endereço lateral com Ctrl+L.
 * Manter os controles da janela acessíveis e capturar as abas fixadas com ícones de sites públicos.
 * Manter o ícone do menu visível mesmo quando o contêiner do ícone original do Vivaldi está oculto.
+* Acionar a abertura nativa pela borda no modo de ocultação automática: antes, durante e depois da abertura, o conteúdo manteve a posição vertical de 6 pixels e a mesma altura. O atributo de integração permaneceu ativo durante a atualização das classes nativas.
 
 Em testes controlados anteriores também foram verificados o deslocamento animado das abas, o reposicionamento de popups e a rolagem sem barra visível. Não foi feita uma validação de todos os sites, extensões, instalações portáteis ou combinações de mods.
 

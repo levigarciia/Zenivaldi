@@ -58,7 +58,7 @@
         const navegador = document.querySelector('#browser');
         const barra = document.querySelector('#browser.tabs-left:not(.is-settingspage) .toolbar-tabbar-before');
         if (!barra) {
-            navegador?.classList.remove('zen-barra-integrada');
+            navegador?.removeAttribute('data-zen-barra-integrada');
             return;
         }
         for (const [nome, seletor] of Object.entries(origens)) {
@@ -73,8 +73,8 @@
         }
         const pronta = [...botoes.values()].filter(botao => botao.isConnected).length === 2
             && Boolean(barra.querySelector('.UrlBar-AddressField'));
-        if (navegador?.classList.contains('zen-barra-integrada') !== pronta) {
-            navegador?.classList.toggle('zen-barra-integrada', pronta);
+        if (navegador?.hasAttribute('data-zen-barra-integrada') !== pronta) {
+            navegador?.toggleAttribute('data-zen-barra-integrada', pronta);
         }
         if (pronta) {
             const lateral = barra.closest('.tabbar-wrapper').getBoundingClientRect().right;
@@ -83,7 +83,7 @@
     }
 
     function transferirFoco(evento) {
-        if (!document.querySelector('#browser.zen-barra-integrada')) return;
+        if (!document.querySelector('#browser[data-zen-barra-integrada]')) return;
         if (!evento.target.matches('.mainbar .UrlBar-AddressField input')) return;
         const campo = document.querySelector('.toolbar-tabbar-before .UrlBar-AddressField input.url');
         campo?.focus();
@@ -92,7 +92,7 @@
 
     function focarEndereco(evento) {
         if (!evento.ctrlKey || evento.altKey || evento.shiftKey || evento.key.toLowerCase() !== 'l') return;
-        if (!document.querySelector('#browser.zen-barra-integrada')) return;
+        if (!document.querySelector('#browser[data-zen-barra-integrada]')) return;
         const campo = document.querySelector('.toolbar-tabbar-before .UrlBar-AddressField input.url');
         if (!campo) return;
         evento.preventDefault();
@@ -123,7 +123,7 @@
             document.removeEventListener('focusin', transferirFoco);
             document.removeEventListener('keydown', focarEndereco, true);
             for (const botao of botoes.values()) botao.remove();
-            document.querySelector('#browser')?.classList.remove('zen-barra-integrada');
+            document.querySelector('#browser')?.removeAttribute('data-zen-barra-integrada');
             document.querySelector('#browser')?.style.removeProperty('--zen-largura-lateral');
             document.querySelector('#browser')?.style.removeProperty('--zen-menu-esquerda');
             document.querySelector('#browser')?.style.removeProperty('--zen-menu-topo');

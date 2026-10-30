@@ -3,6 +3,8 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSyn
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
+const versaoAtual = JSON.parse(readFileSync('package.json', 'utf8')).version;
+
 function executar(arquivo, argumentos = []) {
     const resultado = Bun.spawnSync(['powershell.exe', '-NoProfile', '-ExecutionPolicy', 'Bypass',
         '-File', arquivo, ...argumentos]);
@@ -70,9 +72,9 @@ Compress-Archive -LiteralPath $pasta -DestinationPath $Zip
 `);
         executar(prepararZip, ['-Origem', resolve('.'), '-Destino', dados.raiz, '-Zip', zip]);
         const metadados = join(dados.raiz, 'release.json');
-        const release = {tag_name:'v0.1.3', assets:[{
+        const release = {tag_name:`v${versaoAtual}`, assets:[{
             name:'Zenivaldi.zip', digest:`sha256:${'0'.repeat(64)}`,
-            browser_download_url:'https://github.com/levigarciia/Zenivaldi/releases/download/v0.1.3/Zenivaldi.zip'
+            browser_download_url:`https://github.com/levigarciia/Zenivaldi/releases/download/v${versaoAtual}/Zenivaldi.zip`
         }]};
         writeFileSync(metadados, JSON.stringify(release));
         const roteiro = join(dados.raiz, 'rede.ps1');
@@ -94,10 +96,10 @@ function Invoke-WebRequest { param($Uri, $OutFile, [switch]$UseBasicParsing, $Ti
         writeFileSync(metadados, JSON.stringify(release));
         executar(roteiro, argumentos);
         const atualizado = JSON.parse(readFileSync(dados.configuracao, 'utf8'));
-        if (atualizado.versao !== '0.1.3') {
+        if (atualizado.versao !== versaoAtual) {
             throw new Error(readFileSync(join(dados.pasta, 'ultimo-resultado.txt'), 'utf8'));
         }
-        expect(atualizado.versao).toBe('0.1.3');
-        expect(readFileSync(join(atualizado.pacote, 'package.json'), 'utf8')).toContain('0.1.3');
+        expect(atualizado.versao).toBe(versaoAtual);
+        expect(readFileSync(join(atualizado.pacote, 'package.json'), 'utf8')).toContain(versaoAtual);
     } finally { rmSync(dados.raiz, {recursive:true, force:true}); }
 }, 60000);

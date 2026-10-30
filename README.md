@@ -66,6 +66,7 @@ Use **Instalar.cmd** para instalar ou reaplicar e **Remover.cmd** para desativar
 * Fechamento do modal ao abrir um resultado com clique ou Enter.
 * Ajuste de posição dos popups para evitar que fiquem cortados pela janela.
 * Barra lateral que recolhe mais rápido, respeitando campos de texto e popups abertos.
+* No modo de ocultação automática, as abas aparecem sobre o site sem deslocar seu conteúdo para baixo.
 * Atualizações automáticas e restauração dos scripts após atualizações do Vivaldi, quando o navegador estiver fechado.
 
 O Zenivaldi modifica a interface do Vivaldi. Ele não instala o Zen Browser e não troca o mecanismo que abre os sites.
