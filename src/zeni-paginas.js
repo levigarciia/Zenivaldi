@@ -14,7 +14,7 @@
             let previa = false;
             try { previa = !!JSON.parse(aba.vivExtData || '{}').zeniPeek; } catch { previa = false; }
             await chrome.scripting.executeScript({target:{tabId:aba.id, allFrames:true},
-                files:['user_files/zenivaldi/zeni-pip-inicio.js', 'user_files/zenivaldi/zeni-pagina-inicio.js']});
+                files:['user_files/zenivaldi/zeni-pagina-inicio.js']});
             await chrome.scripting.executeScript({target:{tabId:aba.id, allFrames:true},
                 func:valor => { window.__zeniPonte?.definirPrevia(valor); window.__zeniPonte?.publicar(); }, args:[previa]});
             injetadas.add(aba.id);
@@ -24,11 +24,6 @@
 
     function receber(mensagem, remetente, responder) {
         if (encerrada || remetente.id !== chrome.runtime.id || !remetente.tab) return;
-        if (mensagem?.tipo === 'zeni-pip-origem') {
-            chrome.tabs.update(remetente.tab.id, {active:true});
-            chrome.windows.update(remetente.tab.windowId, {focused:true});
-            return;
-        }
         if (mensagem?.tipo !== 'zeni-pip' && remetente.tab.windowId !== window.vivaldiWindowId) return;
         if (mensagem?.tipo === 'zeni-contexto') {
             let previa = false;
@@ -68,7 +63,7 @@
     };
     async function iniciar() {
         try {
-            const ids = ['zeni-midia-inicio', 'zeni-pip-inicio', 'zeni-pagina-inicio'];
+            const ids = ['zeni-midia-inicio', 'zeni-pagina-inicio'];
             const existentes = await chrome.scripting.getRegisteredContentScripts({ids});
             const faltantes = ids.filter(id => !existentes.some(item => item.id === id));
             if (faltantes.length) {
