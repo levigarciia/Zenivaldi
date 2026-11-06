@@ -95,3 +95,19 @@ e o reparo offline de um arquivo ausente. Pacotes novos sem manifesto continuam 
 4. Execute por clique e Enter, depois reabra o modal.
 5. Feche uma aba intermediária com a barra lateral aberta e confira a animação.
 6. Confira popups próximos das bordas em mais de um tamanho de janela.
+
+## Compatibilidade com Vivaldi 8.3.4191.30
+
+Validação em 6 de novembro de 2026, com perfil separado e páginas em branco:
+
+* Inspeção da interface nativa por CDP e captura visual da janela.
+* Navegação nos novos contêineres `tabbar-nested-buttons`, acima do campo de endereço.
+* Grupo nativo `pinned-group` com três cartões de aproximadamente 86 por 46 pixels em uma lateral de 265 pixels.
+* Barra de endereço superior duplicada ocultada mesmo com o novo contêiner intermediário.
+* Abertura e fechamento do menu compacto.
+* Suíte automática com 11 testes aprovados e 86 asserções.
+
+O Vivaldi 8.3 oferece grade nativa de abas fixadas e expansão da lateral ao passar o mouse.
+O tema aproveita o grupo nativo e ajusta a largura dos cartões. A ocultação completa existente foi preservada.
+Não houve alteração nos scripts de interface. O ciclo do modal de pesquisa, o arraste das abas,
+a expansão ao passar o mouse e as extensões não foram revalidados nesta verificação.

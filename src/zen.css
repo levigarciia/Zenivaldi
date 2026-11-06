@@ -113,8 +113,8 @@
     color: #b9b4c6 !important;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-extensions,
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-command {
+#browser.tabs-left .toolbar-tabbar-before .toolbar-extensions,
+#browser.tabs-left .toolbar-tabbar-before .toolbar-command {
     grid-column: 6;
     grid-row: 2;
     justify-self: end;
@@ -130,16 +130,16 @@
 }
 
 #browser.tabs-left .toolbar-tabbar-before:has(.UrlBar-AddressField:is(:hover, :focus-within))
-    > :is(.toolbar-extensions, .toolbar-command),
-#browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command):hover,
-#browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command):focus-within {
+    :is(.toolbar-extensions, .toolbar-command),
+#browser.tabs-left .toolbar-tabbar-before :is(.toolbar-extensions, .toolbar-command):hover,
+#browser.tabs-left .toolbar-tabbar-before :is(.toolbar-extensions, .toolbar-command):focus-within {
     opacity: 1;
     pointer-events: auto;
 }
 
 #browser.tabs-left .toolbar-tabbar-before:has(
-    > :is(.UrlBar-AddressField, .toolbar-extensions, .toolbar-command):hover,
-    > :is(.toolbar-extensions, .toolbar-command):focus-within
+    :is(.UrlBar-AddressField, .toolbar-extensions, .toolbar-command):hover,
+    :is(.toolbar-extensions, .toolbar-command):focus-within
 ) .UrlBar-AddressField {
     padding-right: 34px;
 }
@@ -148,27 +148,27 @@
     padding-right: 34px;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-extensions {
+#browser.tabs-left .toolbar-tabbar-before .toolbar-extensions {
     overflow: visible;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-extensions:has(
+#browser.tabs-left .toolbar-tabbar-before .toolbar-extensions:has(
     .button-popup, .extension-popup, [aria-expanded="true"]
 ) {
     opacity: 1;
     pointer-events: auto;
 }
 
-#browser.tabs-left .toolbar-tabbar-before:has(> .toolbar-extensions:not(:empty))
+#browser.tabs-left .toolbar-tabbar-before:has(.toolbar-extensions:not(:empty))
     > .toolbar-command {
     display: none;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-command svg {
+#browser.tabs-left .toolbar-tabbar-before .toolbar-command svg {
     display: none;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-command button::after {
+#browser.tabs-left .toolbar-tabbar-before .toolbar-command button::after {
     content: '';
     width: 16px;
     height: 16px;
@@ -406,7 +406,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     #browser.tabs-left .tab,
-    #browser.tabs-left .toolbar-tabbar-before > :is(.toolbar-extensions, .toolbar-command) {
+    #browser.tabs-left .toolbar-tabbar-before :is(.toolbar-extensions, .toolbar-command) {
         transition: none !important;
     }
 }
@@ -598,22 +598,22 @@
     grid-row: 1;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .toolbar-spacer-flexible {
+#browser.tabs-left .toolbar-tabbar-before .toolbar-spacer-flexible {
     grid-column: 3;
     grid-row: 1;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .button-toolbar:has(button[data-name="Back"]) {
+#browser.tabs-left .toolbar-tabbar-before .button-toolbar:has(button[data-name="Back"]) {
     grid-column: 4;
     grid-row: 1;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .button-toolbar:has(button[data-name="Forward"]) {
+#browser.tabs-left .toolbar-tabbar-before .button-toolbar:has(button[data-name="Forward"]) {
     grid-column: 5;
     grid-row: 1;
 }
 
-#browser.tabs-left .toolbar-tabbar-before > .button-toolbar:has(button[data-name="Reload"]) {
+#browser.tabs-left .toolbar-tabbar-before .button-toolbar:has(button[data-name="Reload"]) {
     grid-column: 6;
     grid-row: 1;
 }
@@ -650,8 +650,8 @@
     fill: currentColor;
 }
 
-#browser[data-zen-barra-integrada] #main > .mainbar,
-#browser[data-zen-barra-integrada] .mainbar > .toolbar-mainbar {
+#browser[data-zen-barra-integrada] .mainbar,
+#browser[data-zen-barra-integrada] .mainbar .toolbar-mainbar {
     height: 0 !important;
     min-height: 0 !important;
     padding: 0 !important;
@@ -659,12 +659,12 @@
     overflow: visible !important;
 }
 
-#browser[data-zen-barra-integrada] .mainbar > .toolbar-mainbar > * {
+#browser[data-zen-barra-integrada] .mainbar .toolbar-mainbar > * {
     visibility: hidden;
     pointer-events: none;
 }
 
-#browser[data-zen-barra-integrada] .mainbar > .toolbar-mainbar > button.vivaldi {
+#browser[data-zen-barra-integrada] .mainbar .toolbar-mainbar > button.vivaldi {
     position: fixed !important;
     left: var(--zen-menu-esquerda, 13px);
     top: var(--zen-menu-topo, 13px);
@@ -769,4 +769,35 @@
     border-top: 1px solid currentColor;
     border-right: 1px solid currentColor;
     transform: rotate(45deg);
+}
+
+#browser.tabs-left .toolbar-tabbar-before > .tabbar-nested-buttons {
+    display: contents;
+}
+
+#browser.tabs-left #tabs-container .pinned-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    height: auto !important;
+    padding: 0 0 4px;
+}
+
+#browser.tabs-left #tabs-container .pinned-group > span {
+    display: contents;
+}
+
+#browser.tabs-left #tabs-container .pinned-group .tab-position.is-pinned {
+    position: relative !important;
+    transform: none !important;
+    flex: 1 1 26%;
+    width: auto !important;
+    min-width: 50px;
+    height: 46px !important;
+}
+
+#browser.tabs-left .toolbar-tabbar-before > :is(.zen-menu-slot, .zen-painel-slot) {
+    min-height: 30px;
+    max-height: 30px;
+    margin: 0;
 }
