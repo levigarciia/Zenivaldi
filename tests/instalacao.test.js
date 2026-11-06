@@ -44,6 +44,7 @@ test('instala, reaplica e remove sem perder preferências existentes', () => {
         expect(atualizado.vivaldi.webpages.smooth_scrolling.enabled).toBe(true);
         expect(atualizado.vivaldi.tabs.bar.position).toBe(1);
         expect(atualizado.vivaldi.auto_hide.enabled).toBe(true);
+        expect(atualizado.vivaldi.downloads.open_panel_on_new).toBe(false);
         expect(atualizado.vivaldi.toolbars.tabbar_before).toContain('AddressField');
         expect(atualizado.vivaldi.toolbars.tabbar_after).toEqual(['DownloadButton', 'FlexibleSpacer', 'NewTab']);
         expect(atualizado.vivaldi.address_bar.extensions.show_all_toggle).toBe(true);
@@ -70,6 +71,7 @@ test('instala, reaplica e remove sem perder preferências existentes', () => {
         expect(removido.vivaldi.webpages.smooth_scrolling.enabled).toBe(false);
         expect(removido.vivaldi.tabs.bar.position).toBe(0);
         expect(removido.vivaldi.auto_hide.enabled).toBe(false);
+        expect(removido.vivaldi.downloads.open_panel_on_new).toBeUndefined();
         expect(removido.vivaldi.toolbars.tabbar_before).toEqual(['Home']);
         expect(removido.vivaldi.toolbars.tabbar_after).toEqual(['TabButton']);
         expect(removido.vivaldi.address_bar.extensions)

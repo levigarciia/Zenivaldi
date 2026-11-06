@@ -801,3 +801,120 @@
     max-height: 30px;
     margin: 0;
 }
+
+#browser .download-popout {
+    --colorHighlightBg: #393442;
+    --colorHighlightFg: #eeeaf3;
+    border: 1px solid #302d3d;
+    border-radius: 12px;
+    background: #17151f;
+    color: #c9c6d3;
+    box-shadow: 0 12px 32px #0005;
+}
+
+#browser .download-popout .panel {
+    padding: 14px 10px 8px;
+}
+
+#browser .download-popout header h1 {
+    margin: 0 4px 12px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#browser .download-popout :is(input[type="search"], input[type="text"], .sortselector) {
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: #24212e;
+    color: inherit;
+    box-shadow: none;
+}
+
+#browser .download-popout :is(input[type="search"], input[type="text"]):focus-visible {
+    border-color: #81768e;
+    outline: none;
+}
+
+#browser .download-popout .sortselector {
+    margin-block: 6px;
+    background: transparent;
+}
+
+#browser .download-popout :is(.toolbar, .toolbar > .button-toolbar) {
+    gap: 3px;
+    background: transparent;
+    box-shadow: none;
+}
+
+#browser .download-popout :is(button, .sortselector-button, .sortselector-dropdown) {
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    box-shadow: none;
+    font-weight: 400;
+}
+
+#browser .download-popout button:enabled:hover {
+    background: #302b3a;
+}
+
+#browser .download-popout .sortselector .sortselector-dropdown {
+    appearance: none;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+#browser .download-popout .sortselector .sortselector-dropdown:is(:hover, :focus-visible) {
+    background: #302b3a !important;
+}
+
+#browser .download-popout .sortselector .sortselector-dropdown::before,
+#browser .download-popout .sortselector .sortselector-dropdown::after {
+    display: none;
+}
+
+#browser .download-popout button:focus-visible {
+    outline: 1px solid #a49aaf;
+    outline-offset: -2px;
+}
+
+#browser .download-popout button:disabled {
+    opacity: 0.4;
+}
+
+#browser .download-popout .tree-row {
+    border-radius: 8px;
+    background: transparent;
+}
+
+#browser .download-popout .tree-row:hover {
+    background: #24212e;
+}
+
+#browser .download-popout .tree-row[data-selected] {
+    background: #302b3a;
+    color: #eeeaf3;
+}
+
+#browser .download-popout .DownloadItem-Icon {
+    width: 24px;
+    height: 24px;
+    justify-self: center;
+}
+
+#browser .download-popout .DownloadItem-ProgressBar.visible {
+    height: 3px;
+    border-radius: 3px;
+    background: #302b3a;
+}
+
+#browser .download-popout .DownloadItem-ProgressBar.visible::after {
+    background: #b8a9c9;
+}
+
+#browser .download-popout .outerScrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #504859 transparent;
+}

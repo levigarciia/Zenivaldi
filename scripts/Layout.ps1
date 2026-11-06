@@ -37,6 +37,7 @@ function Configurar-Layout($Preferencias, $Estado, $Catalogo, [bool]$Remover) {
         'vivaldi.address_bar.extensions.render_in_dropdown' = $true
         'vivaldi.quick_commands.open_url_in_new_tab' = $true
         'vivaldi.quick_commands.first_run_tip_dismissed' = $true
+        'vivaldi.downloads.open_panel_on_new' = $false
     }
     if ($Remover -and -not $Estado.PSObject.Properties['layout']) { return }
     if (-not $Estado.PSObject.Properties['layout']) {
@@ -46,6 +47,15 @@ function Configurar-Layout($Preferencias, $Estado, $Catalogo, [bool]$Remover) {
             $anteriores += [pscustomobject]@{ caminho = $caminho; existe = $anterior.existe; valor = $anterior.valor }
         }
         Definir-Valor $Estado 'layout' ([pscustomobject]@{ valores = $anteriores; atalhos = @() })
+    }
+    if (-not $Remover) {
+        foreach ($caminho in $valores.Keys) {
+            if (@($Estado.layout.valores | Where-Object { $_.caminho -eq $caminho }).Count) { continue }
+            $anterior = Ler-Preferencia $Preferencias $caminho
+            $Estado.layout.valores = @($Estado.layout.valores) + [pscustomobject]@{
+                caminho = $caminho; existe = $anterior.existe; valor = $anterior.valor
+            }
+        }
     }
     $vivaldi = Garantir-Objeto $Preferencias 'vivaldi'
     if (-not $vivaldi.PSObject.Properties['actions']) {

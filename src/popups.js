@@ -1,5 +1,6 @@
 ﻿(() => {
     window.popupsZen?.encerrar();
+    vivaldi.prefs.set({ path: 'vivaldi.downloads.open_panel_on_new', value: false });
     let quadro = null;
     const ajustados = new Set();
     function ajustar() {

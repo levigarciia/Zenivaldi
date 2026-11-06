@@ -111,3 +111,16 @@ O Vivaldi 8.3 oferece grade nativa de abas fixadas e expansão da lateral ao pas
 O tema aproveita o grupo nativo e ajusta a largura dos cartões. A ocultação completa existente foi preservada.
 Não houve alteração nos scripts de interface. O ciclo do modal de pesquisa, o arraste das abas,
 a expansão ao passar o mouse e as extensões não foram revalidados nesta verificação.
+
+## Downloads no Vivaldi 8.3.4191.30
+
+Validação em 6 de novembro de 2026, com perfil temporário isolado.
+
+* Um download real de texto, salvo sem diálogo no perfil temporário, abriu a bandeja ao concluir.
+* O botão nativo abriu, fechou e reabriu a bandeja por ativação de teclado.
+* A seta de ordenação apresentou fundo sem gradiente e nenhuma sombra nos estilos computados.
+* Um clique duplo sintético no item solicitou uma abertura pela API de downloads e manteve uma aba aberta.
+  A API de abertura foi interceptada durante essa verificação para não iniciar outro aplicativo.
+* Os testes automatizados cobrem conclusão, cancelamento, janela ativa, privacidade e remoção dos ouvintes.
+
+O diálogo nativo Salvar como e a abertura do arquivo em um aplicativo externo não foram exercitados nesta rodada.
