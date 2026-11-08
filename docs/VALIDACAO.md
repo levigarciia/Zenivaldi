@@ -124,3 +124,10 @@ Validação em 6 de novembro de 2026, com perfil temporário isolado.
 * Os testes automatizados cobrem conclusão, cancelamento, janela ativa, privacidade e remoção dos ouvintes.
 
 O diálogo nativo Salvar como e a abertura do arquivo em um aplicativo externo não foram exercitados nesta rodada.
+
+## Correção da seta de ordenação na versão 0.2.7
+
+Em 7 de novembro de 2026, o botão nativo `.sortselector-button` foi inspecionado no Vivaldi 8.3.4191.30,
+com um download real em perfil isolado. O gradiente estava nesse botão, enquanto a regra anterior atingia
+somente `.sortselector-dropdown`. Após a correção, o botão apresentou `backgroundImage: none` e
+`boxShadow: none`. O clique mudou a ordem crescente para decrescente.

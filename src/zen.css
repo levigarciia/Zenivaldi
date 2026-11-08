@@ -859,14 +859,14 @@
     background: #302b3a;
 }
 
-#browser .download-popout .sortselector .sortselector-dropdown {
+#browser .download-popout .sortselector :is(.sortselector-dropdown, .sortselector-button) {
     appearance: none;
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
 }
 
-#browser .download-popout .sortselector .sortselector-dropdown:is(:hover, :focus-visible) {
+#browser .download-popout .sortselector :is(.sortselector-dropdown, .sortselector-button):is(:hover, :focus-visible) {
     background: #302b3a !important;
 }
 
