@@ -53,6 +53,7 @@ function listarAbasNormais(abas) {
 
 (() => {
     window.pesquisaZen?.encerrar();
+    const seletorCampo = '.quick-command-container .quick-command-search';
     let lista = null;
     let recipiente = null;
     let resultados = [];
@@ -194,7 +195,7 @@ function listarAbasNormais(abas) {
     }
 
     function entrada(evento) {
-        if (abrindoResultado || !evento.target.matches('.quick-command-search')) return;
+        if (abrindoResultado || !evento.target.matches(seletorCampo)) return;
         clearTimeout(temporizador);
         ++geracao;
         const consulta = obterConsulta(evento.target);
@@ -204,7 +205,7 @@ function listarAbasNormais(abas) {
 
     function teclado(evento) {
         if (!lista?.isConnected || !resultados.length
-            || !evento.target.matches('.quick-command-search') || evento.isComposing) return;
+            || !evento.target.matches(seletorCampo) || evento.isComposing) return;
         if (!['ArrowDown', 'ArrowUp', 'Enter'].includes(evento.key)) return;
         if (evento.altKey || evento.ctrlKey || evento.metaKey || evento.shiftKey) return;
         evento.preventDefault();
@@ -216,12 +217,15 @@ function listarAbasNormais(abas) {
     document.addEventListener('input', entrada, true);
     document.addEventListener('keydown', teclado, true);
     function inicializar() {
-        const campo = document.querySelector('.quick-command-search');
+        const campo = document.querySelector(seletorCampo);
         if (campo === campoAtual) return;
         campoAtual = campo;
         ++geracao;
         limpar();
-        if (campo && !abrindoResultado) pesquisar(campo);
+        if (campo && !abrindoResultado) {
+            campo.placeholder = 'Pesquisar ou digitar endereço';
+            pesquisar(campo);
+        }
     }
     const observador = new MutationObserver(inicializar);
     observador.observe(document.documentElement, {childList:true, subtree:true});

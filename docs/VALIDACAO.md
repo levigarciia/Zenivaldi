@@ -131,3 +131,21 @@ Em 7 de novembro de 2026, o botão nativo `.sortselector-button` foi inspecionad
 com um download real em perfil isolado. O gradiente estava nesse botão, enquanto a regra anterior atingia
 somente `.sortselector-dropdown`. Após a correção, o botão apresentou `backgroundImage: none` e
 `boxShadow: none`. O clique mudou a ordem crescente para decrescente.
+
+## Restauração do modal na versão 0.2.8
+
+Validação em 11 de novembro de 2026, no Vivaldi 8.3.4191.35, com perfil separado sem dados pessoais.
+
+O popup nativo de abas também utiliza `.quick-command-search`. Quando esse campo aparecia antes do modal,
+o script selecionava o popup e deixava a lista nativa visível no modal. A integração agora procura e escuta
+somente o campo dentro de `.quick-command-container`. O preenchimento visual nativo fica oculto enquanto
+a lista personalizada está ativa, e o campo apresenta uma indicação de pesquisa e endereço.
+
+* Reproduzida a presença simultânea dos dois campos na interface real.
+* Conferidos Google em consulta sem correspondências e endereço com caminho, parâmetros e fragmento.
+* Abertura por Enter e clique, fechamento e reabertura com a lista personalizada preservada.
+* Inspeção visual do modal e estilos computados: largura de 750 pixels, fundo `#181917` e lista nativa oculta.
+* Suíte com 16 testes e 110 asserções, incluindo regressão do campo concorrente e instalação simulada.
+
+A abertura do modal foi acionada pelo estado interno da interface durante a automação por CDP.
+O atalho físico F2, a animação das abas e os popups de extensões não foram revalidados nesta rodada.

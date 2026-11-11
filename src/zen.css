@@ -449,6 +449,8 @@
     font-size: 14px;
 }
 
+#browser .quick-command-container.pesquisa-zen-ativa .quick-command-search-hint,
+#browser .quick-command-container.pesquisa-zen-ativa .quick-command-tip,
 #browser .quick-command-container.pesquisa-zen-ativa .quick-commands {
     display: none;
 }
